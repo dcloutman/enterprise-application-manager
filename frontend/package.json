@@ -2,6 +2,9 @@
 	"name": "app-tracker-frontend",
 	"version": "0.0.1",
 	"private": true,
+	"engines": {
+		"node": ">=22.0.0"
+	},
 	"scripts": {
 		"build": "vite build",
 		"dev": "vite dev",
