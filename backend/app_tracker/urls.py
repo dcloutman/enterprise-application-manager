@@ -14,6 +14,7 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('api/', include('app_tracker.core.urls')),
+    path('', include('apps.inventory.urls')),
 ]
 
 # Serve media files in development
