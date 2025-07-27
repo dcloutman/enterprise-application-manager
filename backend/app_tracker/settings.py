@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'app_tracker.core',
     'apps.inventory',
+    'apps.documentation',
 ]
 
 MIDDLEWARE = [
@@ -40,6 +41,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'apps.inventory.middleware.AuditMiddleware',  # Add audit middleware after auth
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -163,3 +165,16 @@ if not DEBUG:
 
 # Whitenoise settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Application version
+APP_VERSION = '0.0.1'
+
+# Audit logging configuration
+AUDIT_LOG_DIR = config('AUDIT_LOG_DIR', default='/var/log/app-tracker')
+
+# Ensure audit log directory exists in development
+import os
+if DEBUG:
+    dev_log_dir = os.path.join(BASE_DIR.parent, 'logs')
+    os.makedirs(dev_log_dir, exist_ok=True)
+    AUDIT_LOG_DIR = dev_log_dir

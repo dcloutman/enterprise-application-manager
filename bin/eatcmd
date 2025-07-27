@@ -1,0 +1,555 @@
+#!/usr/bin/env python3
+
+"""
+Enterprise Application Tracker Command Line Tool (eatcmd)
+A comprehensive CLI for managing the EAT application lifecycle.
+"""
+
+import click
+import subprocess
+import sys
+import os
+from pathlib import Path
+from datetime import datetime
+
+# Get project root directory
+PROJECT_ROOT = Path(__file__).parent.parent.absolute()
+
+def run_command(cmd, cwd=None, capture_output=False, check=True):
+    """Execute a shell command with proper error handling."""
+    if cwd is None:
+        cwd = PROJECT_ROOT
+    
+    try:
+        if capture_output:
+            result = subprocess.run(
+                cmd, shell=True, cwd=cwd, capture_output=True, 
+                text=True, check=check
+            )
+            return result.stdout.strip()
+        else:
+            subprocess.run(cmd, shell=True, cwd=cwd, check=check)
+    except subprocess.CalledProcessError as e:
+        click.echo(f"Command failed: {cmd}", err=True)
+        if capture_output and e.stderr:
+            click.echo(f"Error: {e.stderr}", err=True)
+        sys.exit(1)
+
+def check_docker():
+    """Verify Docker is available and running."""
+    try:
+        run_command("docker --version", capture_output=True)
+        run_command("docker compose version", capture_output=True)
+    except:
+        click.echo("Docker or Docker Compose not found. Please install Docker.", err=True)
+        sys.exit(1)
+
+@click.group()
+@click.version_option(version="1.0.0", prog_name="eatcmd")
+def cli():
+    """
+    Enterprise Application Tracker Command Line Tool
+    
+    Manage the EAT application lifecycle including deployment,
+    testing, documentation, and maintenance operations.
+    """
+    pass
+
+@cli.command()
+@click.option('--detached', '-d', is_flag=True, default=True, 
+              help='Run in detached mode (default)')
+@click.option('--foreground', '-f', is_flag=True, 
+              help='Run in foreground mode')
+def start(detached, foreground):
+    """Start the Enterprise Application Tracker."""
+    check_docker()
+    
+    click.echo("Starting Enterprise Application Tracker...")
+    click.echo(f"Project root: {PROJECT_ROOT}")
+    
+    mode = "-d" if detached and not foreground else ""
+    run_command(f"docker compose up {mode}")
+    
+    if detached and not foreground:
+        click.echo("Application started in detached mode")
+        click.echo("Access the application at http://localhost")
+        click.echo("Use 'eatcmd status' to check container status")
+    else:
+        click.echo("Application started in foreground mode")
+
+@cli.command()
+def stop():
+    """Stop the Enterprise Application Tracker."""
+    check_docker()
+    
+    click.echo("Stopping Enterprise Application Tracker...")
+    
+    # Stop and remove containers, networks, and volumes
+    run_command("docker compose down --remove-orphans")
+    
+    # Additional network cleanup - remove any lingering networks with the project name
+    try:
+        # List networks that might be related to this project
+        networks_output = run_command(
+            "docker network ls --filter name=app-tracker --format '{{.Name}}'", 
+            capture_output=True, check=False
+        )
+        
+        if networks_output and networks_output.strip():
+            click.echo("Cleaning up remaining networks...")
+            for network in networks_output.strip().split('\n'):
+                if network and 'app-tracker' in network:
+                    try:
+                        run_command(f"docker network rm {network}", check=False)
+                        click.echo(f"  Removed network: {network}")
+                    except:
+                        # Network might already be removed or in use by other containers
+                        pass
+    except:
+        # Network cleanup is best effort - don't fail the stop command
+        pass
+    
+    click.echo("Application stopped successfully")
+
+@cli.command()
+def restart():
+    """Restart the Enterprise Application Tracker."""
+    check_docker()
+    
+    click.echo("Restarting Enterprise Application Tracker...")
+    run_command("docker compose restart")
+    click.echo("Application restarted successfully")
+
+@cli.command()
+def status():
+    """Show the status of application containers."""
+    check_docker()
+    
+    click.echo("Container Status:")
+    run_command("docker compose ps")
+
+@cli.command()
+@click.option('--follow', '-f', is_flag=True, help='Follow log output')
+@click.option('--service', '-s', help='Show logs for specific service')
+def logs(follow, service):
+    """View application logs."""
+    check_docker()
+    
+    cmd = "docker compose logs"
+    if follow:
+        cmd += " -f"
+    if service:
+        cmd += f" {service}"
+    
+    click.echo("Application Logs:")
+    run_command(cmd)
+
+@cli.command(name='clean-docker')
+@click.option('--force', '-f', is_flag=True, 
+              help='Force removal without confirmation')
+def clean_docker(force):
+    """Stop and remove all application containers, networks, and volumes."""
+    check_docker()
+    
+    if not force:
+        if not click.confirm("This will remove all application containers, networks, and volumes. Continue?"):
+            click.echo("Operation cancelled")
+            return
+    
+    click.echo("Cleaning up Docker resources...")
+    
+    # Stop and remove containers
+    click.echo("  Stopping containers...")
+    run_command("docker compose down", check=False)
+    
+    # Remove application containers forcefully
+    click.echo("  Removing application containers...")
+    container_ids = run_command(
+        "docker ps -aq --filter 'name=app-tracker'", 
+        capture_output=True, check=False
+    )
+    if container_ids:
+        run_command(f"docker rm -f {container_ids}", check=False)
+    
+    # Remove volumes
+    click.echo("  Removing volumes...")
+    run_command("docker compose down -v", check=False)
+    
+    # Clean up unused resources
+    click.echo("  Cleaning up unused Docker resources...")
+    run_command("docker system prune -f", check=False)
+    
+    click.echo("Docker cleanup completed")
+
+@cli.command()
+@click.option('--clean', is_flag=True, help='Clean build directory first')
+@click.option('--format', '-f', default='html', 
+              type=click.Choice(['html', 'pdf', 'epub']),
+              help='Documentation format')
+def docs(clean, format):
+    """Build project documentation using Sphinx."""
+    docs_dir = PROJECT_ROOT / "docs"
+    build_dir = docs_dir / "_build" / format
+    
+    if not docs_dir.exists():
+        click.echo("Documentation directory not found", err=True)
+        sys.exit(1)
+    
+    click.echo(f"Building documentation in {format} format...")
+    
+    if clean and build_dir.exists():
+        click.echo("  Cleaning build directory...")
+        run_command(f"rm -rf {build_dir}")
+    
+    # Check if Sphinx is available
+    try:
+        run_command("sphinx-build --version", capture_output=True)
+    except:
+        click.echo("Sphinx not found. Please install sphinx: pip install sphinx", err=True)
+        sys.exit(1)
+    
+    # Build documentation
+    run_command(f"sphinx-build -b {format} docs docs/_build/{format}")
+    
+    click.echo(f"Documentation built successfully")
+    click.echo(f"Output: {build_dir}")
+    
+    if format == 'html':
+        index_file = build_dir / "index.html"
+        if index_file.exists():
+            click.echo(f"Open in browser: file://{index_file.absolute()}")
+
+@cli.command()
+@click.option('--backend-only', is_flag=True, help='Run only backend tests')
+@click.option('--frontend-only', is_flag=True, help='Run only frontend tests')
+@click.option('--coverage', is_flag=True, help='Generate coverage reports')
+def test(backend_only, frontend_only, coverage):
+    """Run the comprehensive test suite."""
+    check_docker()
+    
+    if backend_only and frontend_only:
+        click.echo("Cannot specify both --backend-only and --frontend-only", err=True)
+        sys.exit(1)
+    
+    # Generate timestamp for test results
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    test_results_dir = f"/tmp/eatcmd_tests_{timestamp}"
+    
+    # Check if containers are running and healthy
+    containers_running = False
+    try:
+        running_services = run_command(
+            "docker compose ps --services --filter 'status=running'", 
+            capture_output=True, check=False
+        )
+        if running_services and running_services.strip():
+            # Check if any app container exists and is running
+            try:
+                # Try different container names that might exist in swarm mode
+                container_found = False
+                for container_suffix in ['1', '2', '3']:
+                    try:
+                        run_command(f"docker exec app-tracker-app-{container_suffix} echo 'Container is running'", 
+                                   capture_output=True, check=True)
+                        container_found = True
+                        break
+                    except:
+                        continue
+                
+                if not container_found:
+                    # Try finding any app container
+                    container_list = run_command(
+                        "docker ps --filter 'name=app-tracker-app' --format '{{.Names}}'",
+                        capture_output=True, check=False
+                    )
+                    if container_list and container_list.strip():
+                        first_container = container_list.strip().split('\n')[0]
+                        run_command(f"docker exec {first_container} echo 'Container is running'", 
+                                   capture_output=True, check=True)
+                        container_found = True
+                
+                containers_running = container_found
+            except:
+                containers_running = False
+    except:
+        containers_running = False
+    
+    if not containers_running:
+        click.echo("Containers not running. Starting application first...")
+        run_command("docker compose up -d")
+        click.echo("Waiting for services to be ready...")
+        
+        # Wait for containers to fully start and be ready
+        max_retries = 24  # 120 seconds total
+        container_ready = False
+        
+        for attempt in range(max_retries):
+            try:
+                # Find any running app container
+                container_list = run_command(
+                    "docker ps --filter 'name=app-tracker-app' --filter 'status=running' --format '{{.Names}}'",
+                    capture_output=True, check=False
+                )
+                
+                if container_list and container_list.strip():
+                    first_container = container_list.strip().split('\n')[0]
+                    
+                    # Check if container is actually ready (not restarting)
+                    container_status = run_command(
+                        f"docker inspect {first_container} --format '{{{{.State.Status}}}}'", 
+                        capture_output=True, check=False
+                    )
+                    
+                    if container_status and container_status.strip() == 'running':
+                        # Test if the container is responsive
+                        try:
+                            run_command(f"docker exec {first_container} echo 'Container is ready'", 
+                                       capture_output=True, check=True)
+                            container_ready = True
+                            click.echo("Containers are ready!")
+                            break
+                        except:
+                            # Container is running but not responsive yet
+                            pass
+                
+                click.echo(f"Waiting for containers (attempt {attempt + 1}/{max_retries})...")
+                run_command("sleep 5")
+                
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    click.echo(f"Waiting for containers (attempt {attempt + 1}/{max_retries})...")
+                    run_command("sleep 5")
+                else:
+                    click.echo("Failed to start containers properly. Please check Docker status and logs:", err=True)
+                    click.echo("  - Run 'bin/eatcmd logs' to check container logs", err=True)
+                    click.echo("  - Run 'bin/eatcmd status' to check container status", err=True)
+                    sys.exit(1)
+        
+        if not container_ready:
+            click.echo("Containers failed to become ready in time.", err=True)
+            sys.exit(1)
+    
+    # Create test results directory
+    run_command(f"mkdir -p {test_results_dir}")
+    click.echo(f"Writing test results to: {test_results_dir}")
+    click.echo("Running test suite...")
+    
+    # Get the first available app container
+    container_list = run_command(
+        "docker ps --filter 'name=app-tracker-app' --filter 'status=running' --format '{{.Names}}'",
+        capture_output=True, check=True
+    )
+    first_container = container_list.strip().split('\n')[0] if container_list and container_list.strip() else None
+    
+    if not first_container:
+        click.echo("No running app containers found", err=True)
+        sys.exit(1)
+    
+    backend_success = True
+    frontend_success = True
+    
+    if not frontend_only:
+        click.echo("  Running backend tests...")
+        try:
+            # Run backend tests and capture output directly
+            backend_output = run_command(
+                f"docker exec {first_container} bash -c 'cd /app/backend && python3.12 run_tests.py'",
+                capture_output=True, check=False
+            )
+            
+            with open(f"{test_results_dir}/backend_tests.txt", "w") as f:
+                f.write(backend_output or "No output captured")
+            
+            click.echo(f"Backend test results written to: {test_results_dir}/backend_tests.txt")
+        except Exception as e:
+            backend_success = False
+            with open(f"{test_results_dir}/backend_tests.txt", "w") as f:
+                f.write(f"Backend tests failed with error: {e}\n")
+            click.echo(f"Backend tests encountered an error: {e}", err=True)
+    
+    if not backend_only:
+        click.echo("  Running frontend tests...")
+        cmd = "source /root/.nvm/nvm.sh && cd /app/frontend && npm test -- --run"
+        if coverage:
+            cmd = "source /root/.nvm/nvm.sh && cd /app/frontend && npm run test:coverage -- --run"
+        
+        try:
+            # Run frontend tests and capture output directly
+            frontend_output = run_command(
+                f"docker exec {first_container} bash -c '{cmd}'",
+                capture_output=True, check=False
+            )
+            
+            with open(f"{test_results_dir}/frontend_tests.txt", "w") as f:
+                f.write(frontend_output or "No output captured")
+                
+            click.echo(f"Frontend test results written to: {test_results_dir}/frontend_tests.txt")
+        except Exception as e:
+            frontend_success = False
+            with open(f"{test_results_dir}/frontend_tests.txt", "w") as f:
+                f.write(f"Frontend tests failed with error: {e}\n")
+            click.echo(f"Frontend tests encountered an error: {e}", err=True)
+    
+    # Write summary
+    summary_file = f"{test_results_dir}/test_summary.txt"
+    with open(summary_file, "w") as f:
+        f.write(f"Test Suite Summary - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write("=" * 50 + "\n\n")
+        
+        if not frontend_only:
+            f.write(f"Backend Tests: {'PASSED' if backend_success else 'FAILED'}\n")
+        if not backend_only:
+            f.write(f"Frontend Tests: {'PASSED' if frontend_success else 'FAILED'}\n")
+        
+        f.write(f"\nTest results directory: {test_results_dir}\n")
+        if not frontend_only:
+            f.write(f"Backend results: {test_results_dir}/backend_tests.txt\n")
+        if not backend_only:
+            f.write(f"Frontend results: {test_results_dir}/frontend_tests.txt\n")
+    
+    click.echo(f"Test suite completed. Summary written to: {summary_file}")
+    
+    # Exit with appropriate code
+    if (not frontend_only and not backend_success) or (not backend_only and not frontend_success):
+        sys.exit(1)
+
+@cli.command()
+def setup():
+    """Run the initial project setup."""
+    click.echo("Running project setup...")
+    
+    # Check for setup script
+    setup_script = PROJECT_ROOT / "bin" / "setup.sh"
+    if setup_script.exists():
+        run_command(str(setup_script))
+    else:
+        click.echo("No setup script found. Creating basic setup...")
+        
+        # Basic setup operations
+        click.echo("  Setting up directories...")
+        (PROJECT_ROOT / "tmp").mkdir(exist_ok=True)
+        (PROJECT_ROOT / "logs").mkdir(exist_ok=True)
+        
+        click.echo("  Setting file permissions...")
+        permissions_script = PROJECT_ROOT / "bin" / "fix_file_permissions.sh"
+        if permissions_script.exists():
+            run_command(str(permissions_script))
+        
+        click.echo("  Building Docker images...")
+        run_command("docker compose build")
+    
+    click.echo("Setup completed")
+
+@cli.command()
+@click.option('--service', '-s', help='Enter specific service container')
+def shell(service):
+    """Open an interactive shell in the application container."""
+    check_docker()
+    
+    container = f"app-tracker-{service}-1" if service else "app-tracker-app-1"
+    
+    click.echo(f"Opening shell in {container}...")
+    try:
+        run_command(f"docker exec -it {container} bash")
+    except:
+        click.echo(f"Could not connect to {container}. Is it running?", err=True)
+
+@cli.command()
+@click.option('--fake', is_flag=True, help='Mark migrations as run without actually running them')
+@click.option('--check', is_flag=True, help='Check for unapplied migrations without applying them')
+def migrate(fake, check):
+    """Run Django database migrations."""
+    check_docker()
+    
+    # Check if database container is running
+    try:
+        db_status = run_command(
+            "docker compose ps db --format json", 
+            capture_output=True, check=False
+        )
+        if not db_status or '"State":"running"' not in db_status:
+            click.echo("Database container is not running. Starting database...", err=True)
+            run_command("docker compose up -d db")
+            
+            # Wait for database to be ready
+            click.echo("Waiting for database to be ready...")
+            max_retries = 30
+            for i in range(max_retries):
+                try:
+                    run_command("docker compose exec db mysqladmin ping -h localhost --silent", check=True)
+                    break
+                except:
+                    if i == max_retries - 1:
+                        click.echo("Database failed to start", err=True)
+                        sys.exit(1)
+                    import time
+                    time.sleep(1)
+    except Exception as e:
+        click.echo(f"Error checking database status: {e}", err=True)
+        sys.exit(1)
+    
+    if check:
+        click.echo("Checking for unapplied migrations...")
+        try:
+            result = run_command(
+                "docker compose run --rm app python3.12 /app/backend/manage.py showmigrations --plan",
+                capture_output=True
+            )
+            if result:
+                click.echo(result)
+            else:
+                click.echo("All migrations are up to date.")
+        except:
+            click.echo("Error checking migrations", err=True)
+            sys.exit(1)
+        return
+    
+    cmd = "docker compose run --rm app python3.12 /app/backend/manage.py migrate"
+    if fake:
+        cmd += " --fake"
+    
+    click.echo("Running Django migrations...")
+    try:
+        run_command(cmd)
+        click.echo("Migrations completed successfully")
+    except:
+        click.echo("Migration failed", err=True)
+        sys.exit(1)
+
+@cli.command()
+def info():
+    """Display system and application information."""
+    click.echo("Enterprise Application Tracker Information")
+    click.echo("=" * 50)
+    
+    click.echo(f"Project Root: {PROJECT_ROOT}")
+    click.echo(f"Current Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    # Docker version
+    try:
+        docker_version = run_command("docker --version", capture_output=True)
+        click.echo(f"Docker: {docker_version}")
+        
+        compose_version = run_command("docker compose version", capture_output=True)
+        click.echo(f"Docker Compose: {compose_version}")
+    except:
+        click.echo("Docker not available")
+    
+    # Python version
+    click.echo(f"Python: {sys.version}")
+    
+    # Check if application is running
+    try:
+        running_services = run_command(
+            "docker compose ps --services --filter 'status=running'", 
+            capture_output=True, check=False
+        )
+        if running_services:
+            click.echo(f"Running Services: {running_services.replace('\n', ', ')}")
+        else:
+            click.echo("Application Status: Not running")
+    except:
+        click.echo("Application Status: Unknown")
+
+if __name__ == '__main__':
+    cli()

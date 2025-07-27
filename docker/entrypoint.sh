@@ -10,11 +10,8 @@ while ! nc -z db 3306; do
 done
 echo "Database is ready!"
 
-# Run Django migrations
-cd /app/backend
-python3.12 manage.py migrate --noinput
-
 # Collect static files
+cd /app/backend
 python3.12 manage.py collectstatic --noinput
 
 # Create superuser if it doesn't exist

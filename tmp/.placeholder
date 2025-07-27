@@ -1,0 +1,3 @@
+# Temporary directory for test outputs and runtime files
+# This placeholder ensures the directory is tracked in git
+# Directory permissions: 755 (writable by test suites)

@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Suite Documentation &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Appendices" href="../appendices/index.html" />
+    <link rel="prev" title="Development Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Development Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Test Suite Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-architecture">Test Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backend-testing-django">Backend Testing (Django)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frontend-testing-sveltekit">Frontend Testing (SvelteKit)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-configuration">Test Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coverage-reports">Coverage Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-data-management">Test Data Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-and-maintaining-tests">Writing and Maintaining Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-and-troubleshooting">Debugging and Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-and-security-testing">Performance and Security Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development-environment-setup">Development Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#backend-development">Backend Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#frontend-development">Frontend Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#coding-standards">Coding Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#database-development">Database Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#development-tools">Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#command-line-tool-eatcmd">Command Line Tool (eatcmd)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Development Guide</a></li>
+      <li class="breadcrumb-item active">Test Suite Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/development/testing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="test-suite-documentation">
+<h1>Test Suite Documentation<a class="headerlink" href="#test-suite-documentation" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The Enterprise Application Tracker (EAT) includes a comprehensive test suite that covers both backend and frontend components. This document explains how to run the tests, describes the test architecture, and outlines how to maintain and extend the test infrastructure.</p>
+</section>
+<section id="test-architecture">
+<h2>Test Architecture<a class="headerlink" href="#test-architecture" title="Link to this heading"></a></h2>
+<section id="backend-testing-django">
+<h3>Backend Testing (Django)<a class="headerlink" href="#backend-testing-django" title="Link to this heading"></a></h3>
+<p>All backend tests are located in the <code class="docutils literal notranslate"><span class="pre">backend/apps/inventory/</span></code> directory. The backend test suite uses Django’s built-in testing framework, along with additional tools for mocking and coverage analysis. Tests are organized by functionality, including models, API endpoints, audit logging, and documentation access.</p>
+<p>Model tests verify the behavior of Django models such as UserProfile, Application, Server, TechStack, and AuditLog. API tests ensure that authentication, CRUD operations, permissions, error handling, and data validation work as expected. Audit tests confirm that audit logs are generated correctly and remain immutable. Documentation tests check that access to documentation is properly controlled and that API documentation is accurate.</p>
+</section>
+<section id="frontend-testing-sveltekit">
+<h3>Frontend Testing (SvelteKit)<a class="headerlink" href="#frontend-testing-sveltekit" title="Link to this heading"></a></h3>
+<p>Frontend tests are found in the <code class="docutils literal notranslate"><span class="pre">frontend/src/</span></code> and <code class="docutils literal notranslate"><span class="pre">frontend/tests/</span></code> directories. The frontend test suite uses Vitest for unit tests, Playwright for end-to-end tests, and Testing Library for component testing. Unit tests focus on components, utility functions, state management, and data transformation. End-to-end tests simulate user workflows, verify API integration, and check the user interface across different devices and scenarios.</p>
+</section>
+</section>
+<section id="running-tests">
+<h2>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading"></a></h2>
+<p>To run frontend unit tests, use the following command inside the frontend container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app-tracker-app-1<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;source /root/.nvm/nvm.sh &amp;&amp; cd /app/frontend &amp;&amp; npm test -- --run&quot;</span>
+</pre></div>
+</div>
+<p>For coverage reports, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app-tracker-app-1<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;source /root/.nvm/nvm.sh &amp;&amp; cd /app/frontend &amp;&amp; npm run test:coverage -- --run&quot;</span>
+</pre></div>
+</div>
+<p>To execute backend tests, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app-tracker-app-1<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;cd /app/backend &amp;&amp; python3.12 run_tests.py&quot;</span>
+</pre></div>
+</div>
+<p>You can also run specific backend test categories by passing arguments such as <code class="docutils literal notranslate"><span class="pre">--models</span></code>, <code class="docutils literal notranslate"><span class="pre">--api</span></code>, or <code class="docutils literal notranslate"><span class="pre">--audit</span></code> to the test runner.</p>
+<p>A comprehensive test suite can be executed using the <code class="docutils literal notranslate"><span class="pre">./bin/run_comprehensive_tests.sh</span></code> script. This script manages container cleanup, enforces timeouts, and generates detailed reports.</p>
+</section>
+<section id="test-configuration">
+<h2>Test Configuration<a class="headerlink" href="#test-configuration" title="Link to this heading"></a></h2>
+<p>Frontend tests are configured using <code class="docutils literal notranslate"><span class="pre">vitest.config.ts</span></code> and <code class="docutils literal notranslate"><span class="pre">playwright.config.ts</span></code>. These files specify which files to include, the test environment, and coverage settings. Backend tests use a dedicated test database and specific settings to ensure isolation and reproducibility.</p>
+</section>
+<section id="coverage-reports">
+<h2>Coverage Reports<a class="headerlink" href="#coverage-reports" title="Link to this heading"></a></h2>
+<p>Coverage reports for the frontend are generated in the <code class="docutils literal notranslate"><span class="pre">frontend/coverage/</span></code> directory, while backend coverage reports are saved in <code class="docutils literal notranslate"><span class="pre">backend/htmlcov/</span></code>. These reports provide insight into which parts of the codebase are exercised by the tests.</p>
+</section>
+<section id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h2>
+<p>The test suite is integrated with GitHub Actions and is designed to run in containerized environments. This ensures that tests are executed in a consistent and reproducible manner, both locally and in CI/CD pipelines.</p>
+</section>
+<section id="test-data-management">
+<h2>Test Data Management<a class="headerlink" href="#test-data-management" title="Link to this heading"></a></h2>
+<p>Backend tests use fixtures located in <code class="docutils literal notranslate"><span class="pre">backend/apps/inventory/fixtures/</span></code> to provide sample data. The test database is isolated and cleaned up automatically after each test run. Frontend tests use mock data to simulate API responses and various application states.</p>
+</section>
+<section id="writing-and-maintaining-tests">
+<h2>Writing and Maintaining Tests<a class="headerlink" href="#writing-and-maintaining-tests" title="Link to this heading"></a></h2>
+<p>When adding new tests, follow the existing structure for backend and frontend tests. Backend tests should use Django’s TestCase or APITestCase classes, while frontend tests should use Vitest or Playwright as appropriate. Regularly review and update tests to ensure they remain effective as the application evolves.</p>
+</section>
+<section id="debugging-and-troubleshooting">
+<h2>Debugging and Troubleshooting<a class="headerlink" href="#debugging-and-troubleshooting" title="Link to this heading"></a></h2>
+<p>If you encounter issues with the test suite, you can run individual tests with verbose output for more detailed information. Ensure that your Docker environment is clean and that all dependencies are up to date.</p>
+</section>
+<section id="performance-and-security-testing">
+<h2>Performance and Security Testing<a class="headerlink" href="#performance-and-security-testing" title="Link to this heading"></a></h2>
+<p>The test suite includes support for performance and security testing using tools such as Locust, OWASP ZAP, and Bandit. These tests help ensure that the application remains performant and secure as it grows.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>The EAT test suite is designed to provide thorough coverage of both backend and frontend functionality. By following the guidelines in this document, you can run, maintain, and extend the tests to ensure the continued reliability of the application.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Development Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../appendices/index.html" class="btn btn-neutral float-right" title="Appendices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

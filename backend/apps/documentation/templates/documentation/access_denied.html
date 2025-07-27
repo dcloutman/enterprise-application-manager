@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Access Denied - Enterprise Application Tracker</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .icon {
+            font-size: 64px;
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        .status-info {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .status-info h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+            color: #495057;
+        }
+        .value {
+            color: #007bff;
+        }
+        .access-denied {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .access-granted {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🔒</div>
+        <h1>Documentation Access Denied</h1>
+        <p>You do not have permission to access the system documentation.</p>
+        
+        <div class="status-info">
+            <h3>Your Account Status</h3>
+            <div class="user-info">
+                <span class="label">Username:</span>
+                <span class="value">{{ user.username }}</span>
+            </div>
+            <div class="user-info">
+                <span class="label">Role:</span>
+                <span class="value">{{ user.profile.get_role_display }}</span>
+            </div>
+            <div class="user-info">
+                <span class="label">Documentation Access:</span>
+                <span class="access-denied">Denied</span>
+            </div>
+        </div>
+
+        <h3>How to Request Access</h3>
+        <p>Documentation access can be granted by Application Administrators on a user-by-user basis. Please contact your Application Administrator to request access to the system documentation.</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="/admin/" class="btn">Return to Admin Panel</a>
+            <a href="/" class="btn btn-secondary">Return to Home</a>
+        </div>
+        
+        <div style="margin-top: 20px; font-size: 12px; color: #6c757d;">
+            <p>Application administrators automatically have documentation access and their access cannot be revoked.</p>
+            <p>Systems managers receive documentation access by default when their account is created, but this access can be revoked by application administrators.</p>
+        </div>
+    </div>
+</body>
+</html>

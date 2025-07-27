@@ -1,6 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.html import format_html
 from .models import (
+    UserProfile, RecordPermission,
     CloudPlatform, ServerEnvironment, Language, DataStore,
     LanguageInstallation, DataStoreInstance, Application,
     ApplicationLanguageDependency, ApplicationDataStoreDependency,
@@ -181,3 +184,93 @@ class CloudPluginAdmin(admin.ModelAdmin):
     list_filter = ['cloud_platform', 'is_enabled']
     search_fields = ['name', 'plugin_module']
     readonly_fields = ['created_at', 'updated_at']
+
+
+class UserProfileInline(admin.StackedInline):
+    """Inline UserProfile editor for User admin"""
+    model = UserProfile
+    fk_name = 'user'  # Specify which ForeignKey to use
+    can_delete = False
+    verbose_name_plural = 'Profile'
+    fields = ['role', 'is_active', 'has_documentation_access', 'department', 'phone', 'notes']
+    
+    def get_readonly_fields(self, request, obj=None):
+        readonly = ['created_at', 'updated_at']
+        # Only Application Admins can modify documentation access for non-admins
+        if not request.user.is_superuser and hasattr(request.user, 'profile'):
+            if request.user.profile.role != 'application_admin':
+                readonly.append('has_documentation_access')
+        return readonly
+
+
+class CustomUserAdmin(BaseUserAdmin):
+    """Extended User admin with UserProfile inline"""
+    inlines = (UserProfileInline,)
+    
+    def get_inline_instances(self, request, obj=None):
+        # Ensure UserProfile exists for all users
+        if obj and not hasattr(obj, 'profile'):
+            UserProfile.objects.create(user=obj)
+        return super().get_inline_instances(request, obj)
+
+
+# Re-register User admin with our custom admin
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    """Direct UserProfile admin for advanced management"""
+    list_display = ['user', 'role', 'department', 'is_active', 'has_documentation_access', 'created_at']
+    list_filter = ['role', 'is_active', 'has_documentation_access', 'department']
+    search_fields = ['user__username', 'user__first_name', 'user__last_name', 'user__email', 'department']
+    readonly_fields = ['created_at', 'updated_at']
+    
+    fieldsets = (
+        ('User Information', {
+            'fields': ('user',)
+        }),
+        ('Role and Permissions', {
+            'fields': ('role', 'is_active', 'has_documentation_access')
+        }),
+        ('Contact Information', {
+            'fields': ('department', 'phone')
+        }),
+        ('Notes', {
+            'fields': ('notes',),
+            'classes': ['collapse']
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ['collapse']
+        })
+    )
+    
+    def get_readonly_fields(self, request, obj=None):
+        readonly = ['created_at', 'updated_at']
+        # Only Application Admins can modify documentation access for non-admins
+        if not request.user.is_superuser and hasattr(request.user, 'profile'):
+            if request.user.profile.role != 'application_admin':
+                readonly.append('has_documentation_access')
+        return readonly
+    
+    def save_model(self, request, obj, form, change):
+        if not change:  # Creating new profile
+            obj.created_by = request.user
+        obj.updated_by = request.user
+        super().save_model(request, obj, form, change)
+
+
+@admin.register(RecordPermission)
+class RecordPermissionAdmin(admin.ModelAdmin):
+    """Admin for managing record-level permissions"""
+    list_display = ['user', 'content_type', 'permission_type', 'granted_by', 'granted_at', 'expires_at']
+    list_filter = ['permission_type', 'content_type', 'granted_at', 'expires_at']
+    search_fields = ['user__username', 'user__first_name', 'user__last_name', 'granted_by__username']
+    readonly_fields = ['granted_at']
+    
+    def save_model(self, request, obj, form, change):
+        if not change:  # Creating new permission
+            obj.granted_by = request.user
+        super().save_model(request, obj, form, change)

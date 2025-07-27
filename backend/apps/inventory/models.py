@@ -1,10 +1,97 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
 from django.core.validators import RegexValidator
+from .audit_signals import AuditMixin
 import uuid
 
 
-class CloudPlatform(models.Model):
+class UserProfile(AuditMixin, models.Model):
+    """Extended user profile with role-based access control"""
+    USER_ROLES = [
+        ('application_admin', 'Application Admin'),
+        ('systems_manager', 'Systems Manager'),
+        ('technician', 'Technician'),
+        ('business_manager', 'Business Manager'),
+        ('business_user', 'Business User'),
+    ]
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    role = models.CharField(max_length=20, choices=USER_ROLES, default='business_user')
+    is_active = models.BooleanField(default=True)
+    has_documentation_access = models.BooleanField(default=False, help_text="Access to system documentation at /docs")  
+    department = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_profiles')
+    notes = models.TextField(blank=True)
+    
+    class Meta:
+        ordering = ['user__last_name', 'user__first_name']
+    
+    def __str__(self):
+        return f"{self.user.get_full_name() or self.user.username} ({self.get_role_display()})"
+    
+    def can_manage_users(self):
+        return self.role == 'application_admin'
+    
+    def can_view_system_notes(self):
+        return self.role in ['application_admin', 'systems_manager']
+    
+    def can_create_records(self):
+        return self.role in ['application_admin', 'systems_manager']
+    
+    def can_delete_records(self):
+        return self.role in ['application_admin', 'systems_manager']
+    
+    def has_write_access(self):
+        return self.role in ['application_admin', 'systems_manager', 'technician']
+    
+    def can_access_documentation(self):
+        """Check if user can access system documentation"""
+        # Application admins always have access (non-revokable)
+        if self.role == 'application_admin':
+            return True
+        # Other users need explicit permission
+        return self.has_documentation_access
+    
+    def save(self, *args, **kwargs):
+        # Auto-grant documentation access for application admins (non-revokable)
+        if self.role == 'application_admin':
+            self.has_documentation_access = True
+        # Auto-grant documentation access for systems managers (revokable)
+        elif self.role == 'systems_manager' and not self.pk:  # Only on creation
+            self.has_documentation_access = True
+        super().save(*args, **kwargs)
+
+
+class RecordPermission(AuditMixin, models.Model):
+    """Explicit permissions for technicians and business users to access specific records"""
+    PERMISSION_TYPES = [
+        ('read', 'Read Only'),
+        ('write', 'Read/Write'),
+        ('full', 'Full Access'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='record_permissions')
+    content_type = models.ForeignKey('contenttypes.ContentType', on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    permission_type = models.CharField(max_length=10, choices=PERMISSION_TYPES, default='read')
+    granted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='granted_permissions')
+    granted_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(null=True, blank=True)
+    notes = models.TextField(blank=True)
+    
+    class Meta:
+        unique_together = ['user', 'content_type', 'object_id']
+        ordering = ['-granted_at']
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.permission_type} access"
+
+
+class CloudPlatform(AuditMixin, models.Model):
     """Cloud platforms that can host infrastructure (AWS, Azure, GCP, etc.)"""
     name = models.CharField(max_length=100, unique=True)
     code = models.CharField(max_length=20, unique=True)  # aws, azure, gcp, etc.
@@ -14,6 +101,9 @@ class CloudPlatform(models.Model):
     plugin_config = models.JSONField(default=dict, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_cloud_platforms')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_cloud_platforms')
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
 
     class Meta:
         ordering = ['name']
@@ -22,7 +112,7 @@ class CloudPlatform(models.Model):
         return self.name
 
 
-class ServerEnvironment(models.Model):
+class ServerEnvironment(AuditMixin, models.Model):
     """Physical or virtual server environments"""
     ENVIRONMENT_TYPES = [
         ('physical', 'Physical Server'),
@@ -51,8 +141,11 @@ class ServerEnvironment(models.Model):
     # Status and metadata
     is_active = models.BooleanField(default=True)
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_servers')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_servers')
 
     class Meta:
         ordering = ['hostname']
@@ -94,6 +187,9 @@ class DataStore(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_datastores')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_datastores')
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
 
     class Meta:
         ordering = ['name']
@@ -110,8 +206,11 @@ class LanguageInstallation(models.Model):
     installation_path = models.CharField(max_length=500, blank=True)
     is_default = models.BooleanField(default=False)
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_language_installations')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_language_installations')
 
     class Meta:
         unique_together = ['server', 'language', 'version']
@@ -121,7 +220,7 @@ class LanguageInstallation(models.Model):
         return f"{self.language.name} {self.version} on {self.server.hostname}"
 
 
-class DataStoreInstance(models.Model):
+class DataStoreInstance(AuditMixin, models.Model):
     """Database instances running on servers"""
     server = models.ForeignKey(ServerEnvironment, on_delete=models.CASCADE, related_name='datastore_instances')
     datastore = models.ForeignKey(DataStore, on_delete=models.CASCADE)
@@ -131,8 +230,11 @@ class DataStoreInstance(models.Model):
     connection_string = models.CharField(max_length=500, blank=True)
     is_active = models.BooleanField(default=True)
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_datastore_instances')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_datastore_instances')
 
     class Meta:
         unique_together = ['server', 'instance_name', 'port']
@@ -142,7 +244,7 @@ class DataStoreInstance(models.Model):
         return f"{self.datastore.name} ({self.instance_name}) on {self.server.hostname}"
 
 
-class Application(models.Model):
+class Application(AuditMixin, models.Model):
     """Enterprise applications tracked by the system"""
     LIFECYCLE_STAGES = [
         ('planning', 'Planning'),
@@ -191,6 +293,7 @@ class Application(models.Model):
     # Status
     is_active = models.BooleanField(default=True)
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
@@ -211,7 +314,10 @@ class ApplicationLanguageDependency(models.Model):
     language_installation = models.ForeignKey(LanguageInstallation, on_delete=models.CASCADE)
     is_primary = models.BooleanField(default=False, help_text="Is this the primary language for the application?")
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_language_dependencies')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_language_dependencies')
 
     class Meta:
         unique_together = ['application', 'language_installation']
@@ -228,7 +334,10 @@ class ApplicationDataStoreDependency(models.Model):
     is_primary = models.BooleanField(default=False, help_text="Is this the primary datastore for the application?")
     connection_type = models.CharField(max_length=50, blank=True, help_text="read-write, read-only, cache, etc.")
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_datastore_dependencies')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_datastore_dependencies')
 
     class Meta:
         unique_together = ['application', 'datastore_instance']
@@ -245,6 +354,7 @@ class ApplicationLifecycleEvent(models.Model):
     to_stage = models.CharField(max_length=20, choices=Application.LIFECYCLE_STAGES)
     event_date = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(blank=True)
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     performed_by = models.ForeignKey(User, on_delete=models.PROTECT)
 
     class Meta:
@@ -263,8 +373,11 @@ class CloudPlugin(models.Model):
     description = models.TextField()
     is_enabled = models.BooleanField(default=False)
     configuration_schema = models.JSONField(default=dict, help_text="JSON schema for plugin configuration")
+    system_manager_notes = models.TextField(blank=True, help_text="Only visible to Systems Managers and Application Admins")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='created_cloud_plugins')
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='updated_cloud_plugins')
 
     class Meta:
         ordering = ['cloud_platform', 'name']

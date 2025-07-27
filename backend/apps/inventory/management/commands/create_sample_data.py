@@ -197,8 +197,8 @@ class Command(BaseCommand):
         api_service, _ = Application.objects.get_or_create(
             name='Data Analytics API',
             defaults={
-                'description': 'REST API for government data analytics',
-                'business_purpose': 'Provides data analytics capabilities for government reporting',
+                'description': 'REST API for enterprise data analytics',
+                'business_purpose': 'Provides data analytics capabilities for enterprise reporting',
                 'version': '1.3.2',
                 'lifecycle_stage': 'production',
                 'criticality': 'medium',
@@ -215,7 +215,7 @@ class Command(BaseCommand):
         dev_app, _ = Application.objects.get_or_create(
             name='Testing Framework',
             defaults={
-                'description': 'Automated testing framework for government applications',
+                'description': 'Automated testing framework for enterprise applications',
                 'business_purpose': 'Quality assurance and automated testing',
                 'version': '0.8.1',
                 'lifecycle_stage': 'development',

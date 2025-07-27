@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Role Overview &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../api-reference/index.html" />
+    <link rel="prev" title="Getting Started" href="getting-started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Role Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#role-hierarchy">Role Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-admin">Application Admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systems-manager">Systems Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#technician">Technician</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#business-manager">Business Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#business-user">Business User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#permission-matrix">Permission Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#role-assignment-guidelines">Role Assignment Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#role-transition-procedures">Role Transition Procedures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices-by-role">Best Practices by Role</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Role Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/user-guide/role-overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="role-overview">
+<h1>Role Overview<a class="headerlink" href="#role-overview" title="Link to this heading"></a></h1>
+<p>The Enterprise Application Tracker implements a comprehensive 5-tier role-based access control system designed for government and enterprise environments. This section details each role’s capabilities, responsibilities, and access levels.</p>
+<section id="role-hierarchy">
+<h2>Role Hierarchy<a class="headerlink" href="#role-hierarchy" title="Link to this heading"></a></h2>
+<p>The system uses a hierarchical role structure where higher-level roles inherit capabilities from lower levels, plus additional permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Application Admin (Level 5) ← Highest privileges
+├── Systems Manager (Level 4)
+├── Technician (Level 3)
+├── Business Manager (Level 2)
+└── Business User (Level 1) ← Base privileges
+</pre></div>
+</div>
+</section>
+<section id="application-admin">
+<h2>Application Admin<a class="headerlink" href="#application-admin" title="Link to this heading"></a></h2>
+<p><strong>Role Badge</strong>: <strong>[ADMIN]</strong> Red badge with crown icon</p>
+<p><strong>Purpose</strong>: Complete system administration and user management</p>
+<p><strong>Key Responsibilities</strong>:
+- Full user account management (create, modify, delete users)
+- System configuration and security settings
+- Role assignment and permission management
+- Access to all system data including sensitive information
+- System maintenance and troubleshooting
+- Compliance and audit oversight</p>
+<p><strong>Access Levels</strong>:
+- <strong>[YES]</strong>  <strong>User Management</strong>: Full CRUD operations on user accounts
+- <strong>[YES]</strong>  <strong>System Notes</strong>: Can view and edit all system manager notes
+- <strong>[YES]</strong>  <strong>Record Management</strong>: Can create, edit, and delete all records
+- <strong>[YES]</strong>  <strong>Write Access</strong>: Full write permissions across all modules
+- <strong>[YES]</strong>  <strong>Admin Panel</strong>: Access to Django admin interface
+- <strong>[YES]</strong>  <strong>API Access</strong>: Full API access including administrative endpoints</p>
+<p><strong>Typical Users</strong>:
+- IT Security Officers
+- System Administrators
+- IT Directors
+- Compliance Officers</p>
+<p><strong>Security Considerations</strong>:
+- This role should be limited to essential personnel only
+- All actions are logged and audited
+- Regular access reviews recommended
+- Should use multi-factor authentication</p>
+</section>
+<section id="systems-manager">
+<h2>Systems Manager<a class="headerlink" href="#systems-manager" title="Link to this heading"></a></h2>
+<p><strong>Role Badge</strong>: <strong>[SYSTEMS]</strong> Orange badge with gear icon</p>
+<p><strong>Purpose</strong>: Technical infrastructure management and operations</p>
+<p><strong>Key Responsibilities</strong>:
+- Server environment management
+- Application lifecycle tracking
+- Database and service management
+- Technical documentation maintenance
+- Dependency relationship management
+- System monitoring and alerting</p>
+<p><strong>Access Levels</strong>:
+- ❌ <strong>User Management</strong>: Cannot manage user accounts
+- <strong>[YES]</strong>  <strong>System Notes</strong>: Can view and edit system manager notes
+- <strong>[YES]</strong>  <strong>Record Management</strong>: Can create, edit, and delete technical records
+- <strong>[YES]</strong>  <strong>Write Access</strong>: Full write permissions for infrastructure data
+- ❌ <strong>Admin Panel</strong>: No access to administrative interface
+- <strong>[YES]</strong>  <strong>API Access</strong>: Full API access for technical data</p>
+<p><strong>Typical Users</strong>:
+- Systems Engineers
+- Database Administrators
+- Network Administrators
+- Technical Team Leads
+- DevOps Engineers</p>
+<p><strong>Unique Capabilities</strong>:
+- Access to sensitive technical information
+- Can update system manager notes with confidential details
+- Authority to make infrastructure changes
+- Responsible for technical accuracy of data</p>
+</section>
+<section id="technician">
+<h2>Technician<a class="headerlink" href="#technician" title="Link to this heading"></a></h2>
+<p><strong>Role Badge</strong>: <strong>CONFIG</strong> Yellow badge with wrench icon</p>
+<p><strong>Purpose</strong>: Day-to-day technical maintenance and support</p>
+<p><strong>Key Responsibilities</strong>:
+- Server configuration updates
+- Software installation and updates
+- Hardware maintenance tracking
+- Issue resolution and documentation
+- Following change management procedures
+- Basic troubleshooting and support</p>
+<p><strong>Access Levels</strong>:
+- ❌ <strong>User Management</strong>: Cannot manage user accounts
+- ❌ <strong>System Notes</strong>: Cannot view system manager notes
+- ❌ <strong>Record Creation</strong>: Cannot create new asset records
+- ❌ <strong>Record Deletion</strong>: Cannot delete existing records
+- <strong>[YES]</strong>  <strong>Write Access</strong>: Can edit existing records (limited scope)
+- ❌ <strong>Admin Panel</strong>: No administrative access
+- 🔶 <strong>API Access</strong>: Limited API access for assigned tasks</p>
+<p><strong>Typical Users</strong>:
+- Field Technicians
+- Help Desk Staff
+- Junior System Administrators
+- Support Specialists
+- Maintenance Personnel</p>
+<p><strong>Work Patterns</strong>:
+- Typically work on assigned servers or applications
+- Require explicit permissions for specific records
+- Focus on implementation rather than planning
+- Follow established procedures and protocols</p>
+</section>
+<section id="business-manager">
+<h2>Business Manager<a class="headerlink" href="#business-manager" title="Link to this heading"></a></h2>
+<p><strong>Role Badge</strong>: <strong>[BUSINESS]</strong> Blue badge with chart icon</p>
+<p><strong>Purpose</strong>: Business oversight and application portfolio management</p>
+<p><strong>Key Responsibilities</strong>:
+- Application portfolio review
+- Business impact assessment
+- Resource planning and budgeting
+- Stakeholder communication
+- Compliance reporting
+- Strategic planning support</p>
+<p><strong>Access Levels</strong>:
+- ❌ <strong>User Management</strong>: Cannot manage user accounts
+- ❌ <strong>System Notes</strong>: Cannot view system manager notes
+- ❌ <strong>Record Management</strong>: Cannot create, edit, or delete records
+- ❌ <strong>Write Access</strong>: Read-only access to all data
+- ❌ <strong>Admin Panel</strong>: No administrative access
+- 🔶 <strong>API Access</strong>: Read-only API access for reporting</p>
+<p><strong>Typical Users</strong>:
+- IT Managers
+- Business Analysts
+- Project Managers
+- Department Heads
+- Financial Officers</p>
+<p><strong>Focus Areas</strong>:
+- Business alignment of IT resources
+- Cost optimization opportunities
+- Risk assessment and mitigation
+- Vendor relationship management
+- Performance metrics and KPIs</p>
+</section>
+<section id="business-user">
+<h2>Business User<a class="headerlink" href="#business-user" title="Link to this heading"></a></h2>
+<p><strong>Role Badge</strong>: 👤 Green badge with user icon</p>
+<p><strong>Purpose</strong>: Basic system access for end-user needs</p>
+<p><strong>Key Responsibilities</strong>:
+- Viewing application information
+- Checking service status
+- Reporting issues
+- Accessing user documentation
+- Understanding business processes</p>
+<p><strong>Access Levels</strong>:
+- ❌ <strong>User Management</strong>: Cannot manage user accounts
+- ❌ <strong>System Notes</strong>: Cannot view system manager notes
+- ❌ <strong>Record Management</strong>: Cannot create, edit, or delete records
+- ❌ <strong>Write Access</strong>: No write permissions
+- ❌ <strong>Admin Panel</strong>: No administrative access
+- 🔶 <strong>API Access</strong>: Very limited read-only API access</p>
+<p><strong>Typical Users</strong>:
+- End Users
+- Business Staff
+- Contractors (limited access)
+- Temporary Staff
+- External Stakeholders</p>
+<p><strong>Limitations</strong>:
+- Cannot see sensitive technical information
+- Cannot modify any system data
+- Limited to viewing publicly available information
+- May require explicit permissions for specific applications</p>
+</section>
+<section id="permission-matrix">
+<h2>Permission Matrix<a class="headerlink" href="#permission-matrix" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Detailed Permission Matrix</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 10.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Capability</strong></p></th>
+<th class="head"><p><strong>App Admin</strong></p></th>
+<th class="head"><p><strong>Sys Manager</strong></p></th>
+<th class="head"><p><strong>Technician</strong></p></th>
+<th class="head"><p><strong>Biz Manager</strong></p></th>
+<th class="head"><p><strong>Biz User</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Create Users</p></td>
+<td><p><strong>[YES]</strong>  Full</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Manage Roles</p></td>
+<td><p><strong>[YES]</strong>  Full</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+</tr>
+<tr class="row-even"><td><p>View System Notes</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Create Records</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+</tr>
+<tr class="row-even"><td><p>Edit Records</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p>🔶 Assigned</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Delete Records</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+<td><p>❌ None</p></td>
+</tr>
+<tr class="row-even"><td><p>View Sensitive Data</p></td>
+<td><p><strong>[YES]</strong>  All</p></td>
+<td><p><strong>[YES]</strong>  Technical</p></td>
+<td><p>🔶 Limited</p></td>
+<td><p>🔶 Business</p></td>
+<td><p>🔶 Public</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="role-assignment-guidelines">
+<h2>Role Assignment Guidelines<a class="headerlink" href="#role-assignment-guidelines" title="Link to this heading"></a></h2>
+<p><strong>Security Principles</strong></p>
+<ul class="simple">
+<li><p><strong>Principle of Least Privilege</strong>: Users should have the minimum access necessary</p></li>
+<li><p><strong>Separation of Duties</strong>: No single user should have complete control</p></li>
+<li><p><strong>Regular Reviews</strong>: Access should be reviewed quarterly</p></li>
+<li><p><strong>Audit Trail</strong>: All role changes must be documented</p></li>
+</ul>
+<p><strong>Assignment Criteria</strong></p>
+<dl class="simple">
+<dt><strong>Application Admin</strong></dt><dd><ul class="simple">
+<li><p>Senior IT security personnel only</p></li>
+<li><p>Requires management approval</p></li>
+<li><p>Background check required</p></li>
+<li><p>Multi-factor authentication mandatory</p></li>
+</ul>
+</dd>
+<dt><strong>Systems Manager</strong></dt><dd><ul class="simple">
+<li><p>Technical expertise in infrastructure</p></li>
+<li><p>Minimum 3 years experience</p></li>
+<li><p>Team lead or senior role</p></li>
+<li><p>Regular security training</p></li>
+</ul>
+</dd>
+<dt><strong>Technician</strong></dt><dd><ul class="simple">
+<li><p>Technical training completed</p></li>
+<li><p>Supervised work environment</p></li>
+<li><p>Specific task assignments</p></li>
+<li><p>Limited time-based access</p></li>
+</ul>
+</dd>
+<dt><strong>Business Manager</strong></dt><dd><ul class="simple">
+<li><p>Management or supervisory role</p></li>
+<li><p>Business justification required</p></li>
+<li><p>Budget or planning responsibilities</p></li>
+<li><p>Regular access review</p></li>
+</ul>
+</dd>
+<dt><strong>Business User</strong></dt><dd><ul class="simple">
+<li><p>Default role for general users</p></li>
+<li><p>Basic system orientation required</p></li>
+<li><p>Minimal access needs</p></li>
+<li><p>Can be upgraded with justification</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="role-transition-procedures">
+<h2>Role Transition Procedures<a class="headerlink" href="#role-transition-procedures" title="Link to this heading"></a></h2>
+<p><strong>Promotion Process</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Request Submission</strong>: Manager submits role change request</p></li>
+<li><p><strong>Justification Review</strong>: Business need assessment</p></li>
+<li><p><strong>Approval Chain</strong>: Department head → IT Security → Admin</p></li>
+<li><p><strong>Training Requirement</strong>: Role-specific training completion</p></li>
+<li><p><strong>Access Activation</strong>: Admin updates role with effective date</p></li>
+<li><p><strong>Confirmation</strong>: User receives access confirmation</p></li>
+</ol>
+<p><strong>Role Reduction/Termination</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Immediate Deactivation</strong>: For terminated employees</p></li>
+<li><p><strong>Gradual Transition</strong>: For role changes</p></li>
+<li><p><strong>Data Transfer</strong>: Ensure continuity of responsibilities</p></li>
+<li><p><strong>Access Verification</strong>: Confirm permissions removed</p></li>
+<li><p><strong>Documentation</strong>: Record change in audit log</p></li>
+</ol>
+<p><strong>Emergency Procedures</strong></p>
+<ul class="simple">
+<li><p><strong>Temporary Elevation</strong>: 24-hour emergency access possible</p></li>
+<li><p><strong>Approval Required</strong>: Must be approved by two administrators</p></li>
+<li><p><strong>Full Logging</strong>: All emergency access fully logged</p></li>
+<li><p><strong>Post-Review</strong>: Mandatory review within 48 hours</p></li>
+</ul>
+</section>
+<section id="best-practices-by-role">
+<h2>Best Practices by Role<a class="headerlink" href="#best-practices-by-role" title="Link to this heading"></a></h2>
+<p><strong>For Application Admins</strong></p>
+<ul class="simple">
+<li><p>Regularly review user access and roles</p></li>
+<li><p>Monitor system logs for unusual activity</p></li>
+<li><p>Keep security policies up to date</p></li>
+<li><p>Plan for administrator succession</p></li>
+<li><p>Maintain current security training</p></li>
+</ul>
+<p><strong>For Systems Managers</strong></p>
+<ul class="simple">
+<li><p>Keep technical documentation current</p></li>
+<li><p>Review and update system notes regularly</p></li>
+<li><p>Coordinate with security team on changes</p></li>
+<li><p>Maintain awareness of infrastructure dependencies</p></li>
+<li><p>Follow change management procedures</p></li>
+</ul>
+<p><strong>For Technicians</strong></p>
+<ul class="simple">
+<li><p>Request appropriate permissions in advance</p></li>
+<li><p>Document all changes and maintenance</p></li>
+<li><p>Escalate issues beyond your authorization</p></li>
+<li><p>Follow established procedures strictly</p></li>
+<li><p>Maintain technical skills and training</p></li>
+</ul>
+<p><strong>For Business Managers</strong></p>
+<ul class="simple">
+<li><p>Focus on business outcomes and metrics</p></li>
+<li><p>Coordinate with technical teams effectively</p></li>
+<li><p>Use reporting features for decision making</p></li>
+<li><p>Understand technical constraints and requirements</p></li>
+<li><p>Advocate for user needs and business requirements</p></li>
+</ul>
+<p><strong>For Business Users</strong></p>
+<ul class="simple">
+<li><p>Report issues promptly through proper channels</p></li>
+<li><p>Keep contact information current</p></li>
+<li><p>Attend training sessions when offered</p></li>
+<li><p>Use self-service features when possible</p></li>
+<li><p>Respect data access limitations and policies</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting-started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api-reference/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

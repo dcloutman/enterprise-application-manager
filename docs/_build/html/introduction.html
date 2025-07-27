@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="installation.html" />
+    <link rel="prev" title="Enterprise Application Tracker Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose-and-scope">Purpose and Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problem-statement">Problem Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solution-overview">Solution Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#target-audience">Target Audience</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-the-enterprise-application-tracker">What is the Enterprise Application Tracker?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architectural-principles">Architectural Principles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+</section>
+<section id="id1">
+<h1>Introduction<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="purpose-and-scope">
+<h2>Purpose and Scope<a class="headerlink" href="#purpose-and-scope" title="Link to this heading"></a></h2>
+<p>The Enterprise Application Tracker (EAT) is an experimental application inventory system specifically designed for tracking enterprise software application installations and their supporting infrastructure relationships within server-side environments. This proof-of-concept system addresses the need for centralized tracking of application deployments on servers while maintaining role-based security and basic compliance features.</p>
+<p><strong>Important Scope Limitations:</strong></p>
+<ul class="simple">
+<li><p><strong>Server-Side Focus</strong>: EAT tracks application installations on server environments only</p></li>
+<li><p><strong>No Physical Asset Management</strong>: Does not inventory physical hardware (servers, network equipment, storage devices)</p></li>
+<li><p><strong>No Client-Side Tracking</strong>: Does not track software installations on end-user devices or workstations</p></li>
+<li><p><strong>Application-Centric</strong>: Focuses on enterprise business applications rather than system software or utilities</p></li>
+<li><p><strong>Future Expansion</strong>: May integrate with physical asset management systems or expand to client-side tracking in future versions</p></li>
+</ul>
+</section>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading"></a></h2>
+<p>Enterprise IT departments managing server-side application deployments face several challenges:</p>
+<ul class="simple">
+<li><p><strong>Application Deployment Tracking</strong>: Scattered information about what applications are deployed where</p></li>
+<li><p><strong>Server-Application Relationships</strong>: Complex dependencies between applications and their hosting servers</p></li>
+<li><p><strong>Database Dependencies</strong>: Tracking which applications use which backend data stores</p></li>
+<li><p><strong>Environment Management</strong>: Managing applications across development, staging, and production environments</p></li>
+<li><p><strong>Change Tracking</strong>: Understanding application lifecycle events and configuration changes</p></li>
+<li><p><strong>Access Control</strong>: Role-based access to application deployment information</p></li>
+</ul>
+</section>
+<section id="solution-overview">
+<h2>Solution Overview<a class="headerlink" href="#solution-overview" title="Link to this heading"></a></h2>
+<p>EAT provides a basic platform for server-side application tracking through:</p>
+<dl class="simple">
+<dt><strong>Application Installation Tracking</strong></dt><dd><ul class="simple">
+<li><p>Basic inventory of enterprise applications deployed on servers</p></li>
+<li><p>Application metadata and configuration tracking</p></li>
+<li><p>Deployment relationship management</p></li>
+</ul>
+</dd>
+<dt><strong>Server Environment Management</strong></dt><dd><ul class="simple">
+<li><p>Server inventory focused on application hosting capabilities</p></li>
+<li><p>Environment classification (development, staging, production)</p></li>
+<li><p>Basic server configuration tracking for application deployment context</p></li>
+</ul>
+</dd>
+<dt><strong>Data Store Dependencies</strong></dt><dd><ul class="simple">
+<li><p>Tracking of backend databases and data storage systems</p></li>
+<li><p>Application-to-database relationship mapping</p></li>
+<li><p>Basic connection and dependency information</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="key-features">
+<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<p><strong>Application Management</strong>
+- Basic application inventory with metadata
+- Contact information and ownership tracking
+- Simple description and documentation storage
+- Technology stack identification</p>
+<p><strong>Server Tracking</strong>
+- Server inventory with hostname and operating system information
+- Application hosting relationships
+- Basic configuration details
+- System manager notes for technical staff</p>
+<p><strong>Database Inventory</strong>
+- Database and data store tracking
+- Version and connection information
+- Application dependency mapping
+- Basic configuration storage</p>
+<p><strong>User Management</strong>
+- Five-tier role-based access control system
+- User profile management with department information
+- Basic permission assignment
+- Activity logging</p>
+<p><strong>API Access</strong>
+- REST API for programmatic access
+- Token-based authentication
+- Basic CRUD operations for all data models
+- JSON response format</p>
+<p><strong>Audit Capabilities</strong>
+- Basic activity logging
+- User action tracking
+- Change history for compliance
+- Simple reporting functions</p>
+<dl class="simple">
+<dt><strong>Cloud Integration</strong></dt><dd><ul class="simple">
+<li><p>Basic cloud platform tracking for cloud-hosted applications</p></li>
+<li><p>Simple resource and service inventory</p></li>
+<li><p>Cost center and ownership information</p></li>
+<li><p>Basic service configuration tracking</p></li>
+</ul>
+</dd>
+<dt><strong>Security and Compliance</strong></dt><dd><ul class="simple">
+<li><p>Role-based access control with five permission levels</p></li>
+<li><p>Basic audit logging for activity tracking</p></li>
+<li><p>Session-based authentication</p></li>
+<li><p>Input validation and data sanitization</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="target-audience">
+<h2>Target Audience<a class="headerlink" href="#target-audience" title="Link to this heading"></a></h2>
+<p><strong>Primary Users</strong></p>
+<ul class="simple">
+<li><p><strong>IT Administrators</strong>: Full system management and user oversight</p></li>
+<li><p><strong>Systems Managers</strong>: Technical infrastructure management</p></li>
+<li><p><strong>IT Technicians</strong>: Day-to-day asset maintenance</p></li>
+<li><p><strong>Business Managers</strong>: Reporting and application oversight</p></li>
+<li><p><strong>End Users</strong>: Basic application information access</p></li>
+</ul>
+<p><strong>Secondary Users</strong></p>
+<ul class="simple">
+<li><p><strong>Compliance Officers</strong>: Audit trail and security oversight</p></li>
+<li><p><strong>Executive Leadership</strong>: High-level reporting and metrics</p></li>
+<li><p><strong>External Auditors</strong>: System compliance verification</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h1>Introduction<a class="headerlink" href="#id2" title="Link to this heading"></a></h1>
+<p>The Enterprise Application Tracker is an experimental web application designed to provide basic inventory capabilities for business applications and their supporting infrastructure. This system serves as a proof-of-concept for centralized application tracking in enterprise environments.</p>
+<section id="what-is-the-enterprise-application-tracker">
+<h2>What is the Enterprise Application Tracker?<a class="headerlink" href="#what-is-the-enterprise-application-tracker" title="Link to this heading"></a></h2>
+<p>The Enterprise Application Tracker is a Django-based web application with a SvelteKit frontend that helps organizations maintain basic visibility into their software applications and supporting infrastructure. The system focuses on tracking business applications, their hosting servers, associated databases, and basic metadata.</p>
+<p><strong>Development Status</strong></p>
+<p>This is an experimental system currently in version 0.0.1. Development began on July 26, 2025, and the system should be considered a proof-of-concept rather than a production-ready solution.</p>
+<p><strong>Primary Use Cases</strong></p>
+<ul class="simple">
+<li><p><strong>Application Inventory</strong>: Maintain a basic catalog of business applications</p></li>
+<li><p><strong>Infrastructure Relationships</strong>: Track which servers host which applications</p></li>
+<li><p><strong>Database Dependencies</strong>: Record database and data store relationships</p></li>
+<li><p><strong>Basic Documentation</strong>: Store contact information and basic application metadata</p></li>
+<li><p><strong>Change Tracking</strong>: Log basic changes for audit purposes</p></li>
+</ul>
+<p><strong>Current Limitations</strong></p>
+<ul class="simple">
+<li><p>Limited reporting and analytics capabilities</p></li>
+<li><p>Basic security implementation</p></li>
+<li><p>No physical asset tracking</p></li>
+<li><p>Minimal integration features</p></li>
+<li><p>Experimental features may change significantly</p></li>
+</ul>
+</section>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<p><strong>Production Environment</strong></p>
+<ul class="simple">
+<li><p><strong>Operating System</strong>: Oracle Linux 8, RHEL 8+, Ubuntu 20.04+</p></li>
+<li><p><strong>Container Platform</strong>: Docker Swarm or Kubernetes</p></li>
+<li><p><strong>Database</strong>: MySQL 8.4+ or PostgreSQL 13+</p></li>
+<li><p><strong>Memory</strong>: 8GB RAM minimum, 16GB recommended</p></li>
+<li><p><strong>Storage</strong>: 100GB minimum, SSD recommended</p></li>
+<li><p><strong>Network</strong>: HTTPS/TLS 1.3 required</p></li>
+</ul>
+<p><strong>Development Environment</strong></p>
+<ul class="simple">
+<li><p><strong>Development OS</strong>: Linux, macOS, or Windows with WSL2</p></li>
+<li><p><strong>Container Runtime</strong>: Docker Desktop or Podman</p></li>
+<li><p><strong>Database</strong>: MySQL 8.4 (via container)</p></li>
+<li><p><strong>Memory</strong>: 4GB RAM minimum</p></li>
+<li><p><strong>Storage</strong>: 20GB available space</p></li>
+</ul>
+</section>
+<section id="architectural-principles">
+<h2>Architectural Principles<a class="headerlink" href="#architectural-principles" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Security First</strong></dt><dd><p>All features designed with security as primary consideration</p>
+</dd>
+<dt><strong>Role-Based Design</strong></dt><dd><p>Every feature respects user role hierarchies and permissions</p>
+</dd>
+<dt><strong>Audit Everything</strong></dt><dd><p>Complete audit trail for all system interactions</p>
+</dd>
+<dt><strong>Cloud Native</strong></dt><dd><p>Designed for containerized, cloud-ready deployments</p>
+</dd>
+<dt><strong>API First</strong></dt><dd><p>REST API backend enables multiple frontend implementations</p>
+</dd>
+<dt><strong>Extensible</strong></dt><dd><p>Plugin architecture for custom integrations and extensions</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Enterprise Application Tracker Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

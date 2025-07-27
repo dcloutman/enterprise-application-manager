@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Role-Based Access Control &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Audit Logging System" href="audit-logging.html" />
+    <link rel="prev" title="Security" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Security</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Role-Based Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#security-architecture">Security Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#role-security-model">Role Security Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-control-implementation">Access Control Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-classification">Data Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-factor-authentication">Multi-Factor Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-security">Session Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#password-security">Password Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#permission-auditing">Permission Auditing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security-monitoring">Security Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="audit-logging.html">Audit Logging System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-protection.html">Data Protection and Privacy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Security</a></li>
+      <li class="breadcrumb-item active">Role-Based Access Control</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/security/role-based-access.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="role-based-access-control">
+<h1>Role-Based Access Control<a class="headerlink" href="#role-based-access-control" title="Link to this heading"></a></h1>
+<p>The Enterprise Application Tracker implements a comprehensive role-based access control (RBAC) system designed for government and enterprise security requirements.</p>
+<section id="security-architecture">
+<h2>Security Architecture<a class="headerlink" href="#security-architecture" title="Link to this heading"></a></h2>
+<p><strong>Defense in Depth</strong></p>
+<p>The RBAC system implements multiple layers of security:</p>
+<ol class="arabic simple">
+<li><p><strong>Authentication Layer</strong>: User identity verification</p></li>
+<li><p><strong>Authorization Layer</strong>: Role-based permission checking</p></li>
+<li><p><strong>Data Layer</strong>: Record-level access control</p></li>
+<li><p><strong>Audit Layer</strong>: Complete action logging</p></li>
+<li><p><strong>Network Layer</strong>: Transport security and access controls</p></li>
+</ol>
+<p><strong>Zero Trust Principles</strong></p>
+<ul class="simple">
+<li><p><strong>Never Trust, Always Verify</strong>: Every request is authenticated and authorized</p></li>
+<li><p><strong>Least Privilege Access</strong>: Users receive minimum necessary permissions</p></li>
+<li><p><strong>Assume Breach</strong>: System designed to limit damage from compromised accounts</p></li>
+<li><p><strong>Verify Explicitly</strong>: All access decisions based on multiple data points</p></li>
+</ul>
+</section>
+<section id="role-security-model">
+<h2>Role Security Model<a class="headerlink" href="#role-security-model" title="Link to this heading"></a></h2>
+<p><strong>Hierarchical Permissions</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────┐
+│  Application Admin (Level 5)                       │
+│  ├── Full system access                            │
+│  ├── User management                               │
+│  ├── Security configuration                        │
+│  └── Audit access                                  │
+└─────────────────────────────────────────────────────┘
+         ┌──────────────────────────────────────────┐
+         │  Systems Manager (Level 4)              │
+         │  ├── Technical data access              │
+         │  ├── System notes visibility           │
+         │  ├── Infrastructure management         │
+         │  └── No user management                 │
+         └──────────────────────────────────────────┘
+                  ┌─────────────────────────────────┐
+                  │  Technician (Level 3)          │
+                  │  ├── Limited write access      │
+                  │  ├── Assigned record editing   │
+                  │  ├── No system notes          │
+                  │  └── No record creation       │
+                  └─────────────────────────────────┘
+                           ┌────────────────────────┐
+                           │  Business Manager (2) │
+                           │  ├── Read-only access │
+                           │  ├── Business reports │
+                           │  ├── No technical data│
+                           │  └── No system notes  │
+                           └────────────────────────┘
+                                    ┌──────────────┐
+                                    │ Business (1) │
+                                    │ ├── Basic    │
+                                    │ ├── Public   │
+                                    │ ├── Info     │
+                                    │ └── Only     │
+                                    └──────────────┘
+</pre></div>
+</div>
+<p><strong>Permission Inheritance</strong></p>
+<p>Higher-level roles inherit all permissions from lower levels, plus additional capabilities:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Permission checking logic</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">has_permission</span><span class="p">(</span><span class="n">user_role</span><span class="p">,</span> <span class="n">required_permission</span><span class="p">):</span>
+    <span class="n">role_hierarchy</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;business_user&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;business_manager&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;technician&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;systems_manager&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;application_admin&#39;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">}</span>
+
+    <span class="n">permission_levels</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;view_public&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;view_business&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;edit_assigned&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;view_system_notes&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s1">&#39;manage_users&#39;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">}</span>
+
+    <span class="n">user_level</span> <span class="o">=</span> <span class="n">role_hierarchy</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_role</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">required_level</span> <span class="o">=</span> <span class="n">permission_levels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">required_permission</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">user_level</span> <span class="o">&gt;=</span> <span class="n">required_level</span>
+</pre></div>
+</div>
+</section>
+<section id="access-control-implementation">
+<h2>Access Control Implementation<a class="headerlink" href="#access-control-implementation" title="Link to this heading"></a></h2>
+<p><strong>Database-Level Security</strong></p>
+<p>Row-level security ensures users only see authorized data:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Example: Server access control</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="n">server_access_policy</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">servers</span>
+<span class="w">    </span><span class="k">FOR</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">authenticated_users</span>
+<span class="w">    </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="c1">-- Application Admins see all</span>
+<span class="w">        </span><span class="n">current_user_role</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;application_admin&#39;</span><span class="w"> </span><span class="k">OR</span>
+<span class="w">        </span><span class="c1">-- Systems Managers see all</span>
+<span class="w">        </span><span class="n">current_user_role</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;systems_manager&#39;</span><span class="w"> </span><span class="k">OR</span>
+<span class="w">        </span><span class="c1">-- Technicians see assigned servers</span>
+<span class="w">        </span><span class="p">(</span><span class="n">current_user_role</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;technician&#39;</span><span class="w"> </span><span class="k">AND</span>
+<span class="w">         </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">server_assignments</span>
+<span class="w">                </span><span class="k">WHERE</span><span class="w"> </span><span class="n">server_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">servers</span><span class="p">.</span><span class="n">id</span>
+<span class="w">                </span><span class="k">AND</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_user_id</span><span class="p">()))</span><span class="w"> </span><span class="k">OR</span>
+<span class="w">        </span><span class="c1">-- Business users see non-sensitive servers</span>
+<span class="w">        </span><span class="p">(</span><span class="n">current_user_role</span><span class="p">()</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;business_manager&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;business_user&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span>
+<span class="w">         </span><span class="n">servers</span><span class="p">.</span><span class="n">is_public</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>API-Level Security</strong></p>
+<p>All API endpoints implement permission checking:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.permissions</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePermission</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CanViewSystemNotes</span><span class="p">(</span><span class="n">BasePermission</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">has_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">profile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span>
+            <span class="k">return</span> <span class="n">profile</span><span class="o">.</span><span class="n">can_view_system_notes</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ServerViewSet</span><span class="p">(</span><span class="n">ModelViewSet</span><span class="p">):</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">IsAuthenticated</span><span class="p">,</span> <span class="n">CanViewSystemNotes</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">role</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;application_admin&#39;</span><span class="p">,</span> <span class="s1">&#39;systems_manager&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">Server</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s1">&#39;technician&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Server</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">assignments__user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                <span class="n">assignments__is_active</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Server</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">is_public</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>UI-Level Security</strong></p>
+<p>Frontend components respect role permissions:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Svelte component with role-based rendering</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;ts&quot;</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;$lib/stores/auth&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">$</span><span class="o">:</span><span class="w"> </span><span class="nx">canManageUsers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$user</span><span class="o">?</span><span class="p">.</span><span class="nx">profile</span><span class="o">?</span><span class="p">.</span><span class="nx">permissions</span><span class="o">?</span><span class="p">.</span><span class="nx">can_manage_users</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">$</span><span class="o">:</span><span class="w"> </span><span class="nx">canViewSystemNotes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$user</span><span class="o">?</span><span class="p">.</span><span class="nx">profile</span><span class="o">?</span><span class="p">.</span><span class="nx">permissions</span><span class="o">?</span><span class="p">.</span><span class="nx">can_view_system_notes</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+
+<span class="p">{</span><span class="n">#if</span><span class="w"> </span><span class="nx">canManageUsers</span><span class="p">}</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">button</span><span class="w"> </span><span class="nx">on</span><span class="o">:</span><span class="nx">click</span><span class="o">=</span><span class="p">{</span><span class="nx">openUserManagement</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Manage</span><span class="w"> </span><span class="nx">Users</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+<span class="p">{</span><span class="err">/if}</span>
+
+<span class="p">{</span><span class="n">#if</span><span class="w"> </span><span class="nx">canViewSystemNotes</span><span class="p">}</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="nx">div</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">&quot;system-notes&quot;</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">System</span><span class="w"> </span><span class="nx">Manager</span><span class="w"> </span><span class="nx">Notes</span><span class="o">&lt;</span><span class="err">/h3&gt;</span>
+<span class="w">        </span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">server</span><span class="p">.</span><span class="nx">system_manager_notes</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="p">{</span><span class="err">/if}</span>
+</pre></div>
+</div>
+</section>
+<section id="data-classification">
+<h2>Data Classification<a class="headerlink" href="#data-classification" title="Link to this heading"></a></h2>
+<p><strong>Information Sensitivity Levels</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Level</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>Access Requirements</strong></p></th>
+<th class="head"><p><strong>Examples</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Public</p></td>
+<td><p>Non-sensitive business information</p></td>
+<td><p>All authenticated users</p></td>
+<td><p>Application names, general descriptions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Internal</p></td>
+<td><p>Internal business information</p></td>
+<td><p>Business Manager+ roles</p></td>
+<td><p>Cost centers, business owners</p></td>
+</tr>
+<tr class="row-even"><td><p>Confidential</p></td>
+<td><p>Technical system information</p></td>
+<td><p>Technician+ roles</p></td>
+<td><p>Server configurations, versions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Restricted</p></td>
+<td><p>Sensitive technical details</p></td>
+<td><p>Systems Manager+ roles</p></td>
+<td><p>Security configurations, credentials</p></td>
+</tr>
+<tr class="row-even"><td><p>Top Secret</p></td>
+<td><p>Critical security information</p></td>
+<td><p>Application Admin only</p></td>
+<td><p>Encryption keys, admin passwords</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>System Notes Security</strong></p>
+<p>System Manager Notes contain sensitive technical information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ServerSerializer</span><span class="p">(</span><span class="n">ModelSerializer</span><span class="p">):</span>
+    <span class="n">system_manager_notes</span> <span class="o">=</span> <span class="n">SerializerMethodField</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_system_manager_notes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;request&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;profile&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">can_view_system_notes</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">system_manager_notes</span>
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># Hidden from unauthorized users</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-factor-authentication">
+<h2>Multi-Factor Authentication<a class="headerlink" href="#multi-factor-authentication" title="Link to this heading"></a></h2>
+<p><strong>MFA Requirements</strong></p>
+<ul class="simple">
+<li><p><strong>Application Admins</strong>: MFA mandatory</p></li>
+<li><p><strong>Systems Managers</strong>: MFA required for production systems</p></li>
+<li><p><strong>Other Roles</strong>: MFA recommended, configurable by policy</p></li>
+</ul>
+<p><strong>Supported MFA Methods</strong></p>
+<ol class="arabic simple">
+<li><p><strong>TOTP (Time-based One-Time Password)</strong>
+- Google Authenticator
+- Microsoft Authenticator
+- Authy</p></li>
+<li><p><strong>Hardware Tokens</strong>
+- YubiKey
+- RSA SecurID
+- FIDO2/WebAuthn</p></li>
+<li><p><strong>SMS/Email</strong> (not recommended for high-security environments)</p></li>
+</ol>
+<p><strong>MFA Configuration</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Django settings for MFA</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django_otp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django_otp.plugins.otp_totp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django_otp.plugins.otp_static&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">MIDDLEWARE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;django_otp.middleware.OTPMiddleware&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># Custom MFA enforcement</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MFARequiredMixin</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_verified</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s1">&#39;application_admin&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;two_factor:setup&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="session-security">
+<h2>Session Security<a class="headerlink" href="#session-security" title="Link to this heading"></a></h2>
+<p><strong>Session Configuration</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Secure session settings</span>
+<span class="n">SESSION_COOKIE_SECURE</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># HTTPS only</span>
+<span class="n">SESSION_COOKIE_HTTPONLY</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># No JavaScript access</span>
+<span class="n">SESSION_COOKIE_SAMESITE</span> <span class="o">=</span> <span class="s1">&#39;Strict&#39;</span>  <span class="c1"># CSRF protection</span>
+<span class="n">SESSION_COOKIE_AGE</span> <span class="o">=</span> <span class="mi">3600</span>  <span class="c1"># 1 hour timeout</span>
+<span class="n">SESSION_EXPIRE_AT_BROWSER_CLOSE</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">SESSION_SAVE_EVERY_REQUEST</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Extend on activity</span>
+</pre></div>
+</div>
+<p><strong>Session Management</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">login_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">is_active</span><span class="p">:</span>
+            <span class="c1"># Check for concurrent sessions</span>
+            <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">max_concurrent_sessions</span><span class="p">:</span>
+                <span class="n">active_sessions</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                    <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+                    <span class="n">expire_date__gt</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">active_sessions</span> <span class="o">&gt;=</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">max_concurrent_sessions</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">({</span>
+                        <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Maximum concurrent sessions exceeded&#39;</span>
+                    <span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="mi">403</span><span class="p">)</span>
+
+            <span class="n">login</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
+
+            <span class="c1"># Log successful login</span>
+            <span class="n">audit_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> logged in from </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">META</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;dashboard&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="password-security">
+<h2>Password Security<a class="headerlink" href="#password-security" title="Link to this heading"></a></h2>
+<p><strong>Password Requirements</strong></p>
+<ul class="simple">
+<li><p><strong>Minimum Length</strong>: 12 characters</p></li>
+<li><p><strong>Complexity</strong>: Must include uppercase, lowercase, numbers, symbols</p></li>
+<li><p><strong>History</strong>: Cannot reuse last 12 passwords</p></li>
+<li><p><strong>Expiration</strong>: 90 days for privileged accounts, 180 days for others</p></li>
+<li><p><strong>Lockout</strong>: 5 failed attempts triggers 15-minute lockout</p></li>
+</ul>
+<p><strong>Password Policy Implementation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.password_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_password</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.core.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EnterprisePasswordValidator</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Password must be at least 12 characters.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[A-Z]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Password must contain uppercase letters.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a-z]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Password must contain lowercase letters.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Password must contain numbers.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[!@#$%^&amp;*(),.?&quot;:</span><span class="si">{}</span><span class="s1">|&lt;&gt;]&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Password must contain special characters.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check password history</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;password_history&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">old_password</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">password_history</span><span class="o">.</span><span class="n">all</span><span class="p">()[:</span><span class="mi">12</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">check_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">old_password</span><span class="o">.</span><span class="n">password_hash</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Cannot reuse recent passwords.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Account Lockout Protection</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.signals</span><span class="w"> </span><span class="kn">import</span> <span class="n">user_login_failed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.dispatch</span><span class="w"> </span><span class="kn">import</span> <span class="n">receiver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.core.cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
+
+<span class="nd">@receiver</span><span class="p">(</span><span class="n">user_login_failed</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_login_failed</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">credentials</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">username</span><span class="p">:</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;failed_login_</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">failed_attempts</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">failed_attempts</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="c1"># Lock account for 15 minutes</span>
+            <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;locked_</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
+            <span class="n">audit_log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Account </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> locked due to failed login attempts&quot;</span><span class="p">)</span>
+
+        <span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">failed_attempts</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="permission-auditing">
+<h2>Permission Auditing<a class="headerlink" href="#permission-auditing" title="Link to this heading"></a></h2>
+<p><strong>Real-time Permission Monitoring</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">PermissionAuditMiddleware</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">get_response</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span> <span class="o">=</span> <span class="n">get_response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Log permission checks</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+            <span class="n">audit_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> accessing </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Check for privilege escalation attempts</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;permission_denied&#39;</span><span class="p">):</span>
+                <span class="n">audit_log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Permission denied for </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+<p><strong>Regular Access Reviews</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Management command for access review</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="c1"># Generate access review report</span>
+        <span class="n">high_privilege_users</span> <span class="o">=</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">role__in</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;application_admin&#39;</span><span class="p">,</span> <span class="s1">&#39;systems_manager&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">high_privilege_users</span><span class="p">:</span>
+            <span class="n">last_login</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_login</span>
+            <span class="k">if</span> <span class="n">last_login</span> <span class="ow">and</span> <span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">last_login</span><span class="p">)</span><span class="o">.</span><span class="n">days</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;REVIEW: </span><span class="si">{</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2"> - no login for 30+ days&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Check for orphaned permissions</span>
+            <span class="n">permissions</span> <span class="o">=</span> <span class="n">RecordPermission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">perm</span><span class="o">.</span><span class="n">expires_at</span> <span class="ow">and</span> <span class="n">perm</span><span class="o">.</span><span class="n">expires_at</span> <span class="o">&lt;</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CLEANUP: Expired permission for </span><span class="si">{</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="security-monitoring">
+<h2>Security Monitoring<a class="headerlink" href="#security-monitoring" title="Link to this heading"></a></h2>
+<p><strong>Automated Threat Detection</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SecurityMonitoringService</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detect_anomalous_access</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">resource</span><span class="p">):</span>
+        <span class="c1"># Check for unusual access patterns</span>
+        <span class="n">recent_access</span> <span class="o">=</span> <span class="n">AccessLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">timestamp__gte</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">recent_access</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>  <span class="c1"># Unusually high activity</span>
+            <span class="n">alert_security_team</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;High activity detected for user </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for access outside normal hours</span>
+        <span class="k">if</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">hour</span> <span class="o">&lt;</span> <span class="mi">6</span> <span class="ow">or</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">22</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">role</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;application_admin&#39;</span><span class="p">,</span> <span class="s1">&#39;systems_manager&#39;</span><span class="p">]:</span>
+                <span class="n">alert_security_team</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After-hours admin access: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for geographic anomalies (if IP geolocation available)</span>
+        <span class="n">current_ip</span> <span class="o">=</span> <span class="n">get_client_ip</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">usual_locations</span> <span class="o">=</span> <span class="n">get_user_usual_locations</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_location_familiar</span><span class="p">(</span><span class="n">current_ip</span><span class="p">,</span> <span class="n">usual_locations</span><span class="p">):</span>
+            <span class="n">require_additional_verification</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Security Compliance Reporting</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_security_compliance_report</span><span class="p">():</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;user_access_summary&#39;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s1">&#39;privileged_account_review&#39;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s1">&#39;security_violations&#39;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="s1">&#39;audit_trail_integrity&#39;</span><span class="p">:</span> <span class="p">{}</span>
+    <span class="p">}</span>
+
+    <span class="c1"># User access patterns</span>
+    <span class="k">for</span> <span class="n">profile</span> <span class="ow">in</span> <span class="n">UserProfile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+        <span class="n">report</span><span class="p">[</span><span class="s1">&#39;user_access_summary&#39;</span><span class="p">][</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="n">profile</span><span class="o">.</span><span class="n">role</span><span class="p">,</span>
+            <span class="s1">&#39;last_login&#39;</span><span class="p">:</span> <span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_login</span><span class="p">,</span>
+            <span class="s1">&#39;failed_logins&#39;</span><span class="p">:</span> <span class="n">get_failed_login_count</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="p">),</span>
+            <span class="s1">&#39;permissions&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">record_permissions</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;permission_type&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">report</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="audit-logging.html" class="btn btn-neutral float-right" title="Audit Logging System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

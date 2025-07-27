@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Logging System &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Protection and Privacy" href="data-protection.html" />
+    <link rel="prev" title="Role-Based Access Control" href="role-based-access.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Security</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="role-based-access.html">Role-Based Access Control</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Audit Logging System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#architecture">Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#core-components">Core Components</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#logged-events">Logged Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#authentication-events">Authentication Events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-operations">Data Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#administrative-actions">Administrative Actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-access">API Access</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#audit-data-structure">Audit Data Structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#standard-fields">Standard Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#details-field">Details Field</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#audit-log-access">Audit Log Access</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#web-interface">Web Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">API Access</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#programmatic-access">Programmatic Access</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#security-features">Security Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-protection">Data Protection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tamper-protection">Tamper Protection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#retention-policies">Retention Policies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring-and-alerting">Monitoring and Alerting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#log-monitoring">Log Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alert-triggers">Alert Triggers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compliance-features">Compliance Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regulatory-compliance">Regulatory Compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#report-generation">Report Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#audit-system-tests">Audit System Tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-audit-tests">Running Audit Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debug-commands">Debug Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implementation-guidelines">Implementation Guidelines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#security-recommendations">Security Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data-protection.html">Data Protection and Privacy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Security</a></li>
+      <li class="breadcrumb-item active">Audit Logging System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/security/audit-logging.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="audit-logging-system">
+<h1>Audit Logging System<a class="headerlink" href="#audit-logging-system" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The Enterprise Application Tracker (EAT) includes a comprehensive audit logging system that tracks all user actions and system changes for compliance, security, and operational monitoring purposes.</p>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h2>
+<section id="core-components">
+<h3>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h3>
+<section id="auditlog-model">
+<h4>AuditLog Model<a class="headerlink" href="#auditlog-model" title="Link to this heading"></a></h4>
+<p><strong>Location</strong>: <code class="docutils literal notranslate"><span class="pre">backend/apps/inventory/models.py</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AuditLog</span></code> model captures detailed information about every action performed in the system:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AuditLog</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">SET_NULL</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># CREATE, UPDATE, DELETE, VIEW, LOGIN, LOGOUT</span>
+    <span class="n">resource_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Application, Server, TechStack, etc.</span>
+    <span class="n">resource_id</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">details</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">JSONField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>  <span class="c1"># Additional context and changes</span>
+    <span class="n">ip_address</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">GenericIPAddressField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">user_agent</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="audit-middleware">
+<h4>Audit Middleware<a class="headerlink" href="#audit-middleware" title="Link to this heading"></a></h4>
+<p><strong>Location</strong>: <code class="docutils literal notranslate"><span class="pre">backend/apps/inventory/middleware.py</span></code></p>
+<p>Custom middleware that automatically captures audit information for all requests:</p>
+<ul class="simple">
+<li><p>Extracts user information from authenticated sessions</p></li>
+<li><p>Captures IP addresses and user agents</p></li>
+<li><p>Tracks request timing and response status</p></li>
+<li><p>Handles both successful operations and errors</p></li>
+</ul>
+</section>
+<section id="audit-decorators">
+<h4>Audit Decorators<a class="headerlink" href="#audit-decorators" title="Link to this heading"></a></h4>
+<p><strong>Location</strong>: <code class="docutils literal notranslate"><span class="pre">backend/apps/inventory/decorators.py</span></code></p>
+<p>Decorators for easy audit logging integration:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;audit_action(action,</span> <span class="pre">resource_type)</span></code> - Logs specific actions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;audit_view</span></code> - Automatically audits view access</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;audit_model_changes</span></code> - Tracks model CRUD operations</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="logged-events">
+<h2>Logged Events<a class="headerlink" href="#logged-events" title="Link to this heading"></a></h2>
+<section id="authentication-events">
+<h3>Authentication Events<a class="headerlink" href="#authentication-events" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User login/logout</p></li>
+<li><p>Failed authentication attempts</p></li>
+<li><p>Session timeouts</p></li>
+<li><p>Password changes</p></li>
+</ul>
+</section>
+<section id="data-operations">
+<h3>Data Operations<a class="headerlink" href="#data-operations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>CREATE</strong>: New records added to any model</p></li>
+<li><p><strong>UPDATE</strong>: Changes to existing records (with before/after values)</p></li>
+<li><p><strong>DELETE</strong>: Record deletions (with preserved data)</p></li>
+<li><p><strong>VIEW</strong>: Access to sensitive data or reports</p></li>
+</ul>
+</section>
+<section id="administrative-actions">
+<h3>Administrative Actions<a class="headerlink" href="#administrative-actions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>User role changes</p></li>
+<li><p>Permission modifications</p></li>
+<li><p>System configuration changes</p></li>
+<li><p>Bulk data operations</p></li>
+</ul>
+</section>
+<section id="api-access">
+<h3>API Access<a class="headerlink" href="#api-access" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>All REST API endpoint access</p></li>
+<li><p>Authentication token usage</p></li>
+<li><p>Rate limiting violations</p></li>
+<li><p>API error responses</p></li>
+</ul>
+</section>
+</section>
+<section id="audit-data-structure">
+<h2>Audit Data Structure<a class="headerlink" href="#audit-data-structure" title="Link to this heading"></a></h2>
+<section id="standard-fields">
+<h3>Standard Fields<a class="headerlink" href="#standard-fields" title="Link to this heading"></a></h3>
+<p>All audit logs include these standard fields:</p>
+<ul class="simple">
+<li><p><strong>timestamp</strong>: When the action occurred</p></li>
+<li><p><strong>user</strong>: Who performed the action (null for anonymous)</p></li>
+<li><p><strong>action</strong>: What type of action (CREATE, UPDATE, DELETE, VIEW, etc.)</p></li>
+<li><p><strong>resource_type</strong>: What kind of resource was affected</p></li>
+<li><p><strong>resource_id</strong>: Specific identifier of the resource</p></li>
+<li><p><strong>ip_address</strong>: Source IP address</p></li>
+<li><p><strong>user_agent</strong>: Browser/client information</p></li>
+</ul>
+</section>
+<section id="details-field">
+<h3>Details Field<a class="headerlink" href="#details-field" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">details</span></code> JSON field contains action-specific information:</p>
+<section id="for-create-operations">
+<h4>For CREATE operations<a class="headerlink" href="#for-create-operations" title="Link to this heading"></a></h4>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;new_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New Application&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john.doe&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="for-update-operations">
+<h4>For UPDATE operations<a class="headerlink" href="#for-update-operations" title="Link to this heading"></a></h4>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;changes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;old&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;new&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;last_updated&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;old&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-01&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;new&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-15&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="for-delete-operations">
+<h4>For DELETE operations<a class="headerlink" href="#for-delete-operations" title="Link to this heading"></a></h4>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;deleted_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Removed Application&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;last_status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;inactive&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="audit-log-access">
+<h2>Audit Log Access<a class="headerlink" href="#audit-log-access" title="Link to this heading"></a></h2>
+<section id="web-interface">
+<h3>Web Interface<a class="headerlink" href="#web-interface" title="Link to this heading"></a></h3>
+<p><strong>Location</strong>: Admin interface at <code class="docutils literal notranslate"><span class="pre">/admin/inventory/auditlog/</span></code></p>
+<p>Features:</p>
+<ul class="simple">
+<li><p>Searchable and filterable audit logs</p></li>
+<li><p>Date range filtering</p></li>
+<li><p>User-specific activity views</p></li>
+<li><p>Resource-type filtering</p></li>
+<li><p>Export capabilities</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>API Access<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">/api/audit/</span></code></p>
+<p>Query parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: Filter by user ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">action</span></code>: Filter by action type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resource_type</span></code>: Filter by resource type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_date</span></code>: Filter from date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_date</span></code>: Filter to date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ip_address</span></code>: Filter by IP address</p></li>
+</ul>
+</section>
+<section id="programmatic-access">
+<h3>Programmatic Access<a class="headerlink" href="#programmatic-access" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">apps.inventory.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">AuditLog</span>
+
+<span class="c1"># Get all logs for a specific user</span>
+<span class="n">user_logs</span> <span class="o">=</span> <span class="n">AuditLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+<span class="c1"># Get all changes to a specific application</span>
+<span class="n">app_logs</span> <span class="o">=</span> <span class="n">AuditLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">resource_type</span><span class="o">=</span><span class="s1">&#39;Application&#39;</span><span class="p">,</span>
+    <span class="n">resource_id</span><span class="o">=</span><span class="s1">&#39;123&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Get all failed login attempts</span>
+<span class="n">failed_logins</span> <span class="o">=</span> <span class="n">AuditLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">action</span><span class="o">=</span><span class="s1">&#39;LOGIN_FAILED&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="security-features">
+<h2>Security Features<a class="headerlink" href="#security-features" title="Link to this heading"></a></h2>
+<section id="data-protection">
+<h3>Data Protection<a class="headerlink" href="#data-protection" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Audit logs are write-only for most users</p></li>
+<li><p>Sensitive data is hashed or redacted in logs</p></li>
+<li><p>IP addresses can be anonymized for privacy compliance</p></li>
+<li><p>Automatic log rotation and archival</p></li>
+</ul>
+</section>
+<section id="tamper-protection">
+<h3>Tamper Protection<a class="headerlink" href="#tamper-protection" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Audit logs cannot be modified after creation</p></li>
+<li><p>Digital signatures for critical operations</p></li>
+<li><p>Checksum validation for log integrity</p></li>
+<li><p>Separate database schema with restricted access</p></li>
+</ul>
+</section>
+<section id="retention-policies">
+<h3>Retention Policies<a class="headerlink" href="#retention-policies" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Configurable retention periods</p></li>
+<li><p>Automatic archival to long-term storage</p></li>
+<li><p>Compliance with regulatory requirements</p></li>
+<li><p>Secure deletion procedures</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<section id="settings">
+<h3>Settings<a class="headerlink" href="#settings" title="Link to this heading"></a></h3>
+<p><strong>Location</strong>: <code class="docutils literal notranslate"><span class="pre">backend/settings/base.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Audit logging configuration</span>
+<span class="n">AUDIT_LOGGING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ENABLED&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;LOG_ANONYMOUS_USERS&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;LOG_VIEW_ACTIONS&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;RETENTION_DAYS&#39;</span><span class="p">:</span> <span class="mi">2555</span><span class="p">,</span>  <span class="c1"># 7 years</span>
+    <span class="s1">&#39;ANONYMIZE_IP&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;HASH_SENSITIVE_DATA&#39;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AUDIT_LOG_LEVEL</span></code>: Set logging verbosity</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AUDIT_RETENTION_DAYS</span></code>: Override default retention</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AUDIT_ANONYMIZE_IP</span></code>: Enable IP anonymization</p></li>
+</ul>
+</section>
+</section>
+<section id="monitoring-and-alerting">
+<h2>Monitoring and Alerting<a class="headerlink" href="#monitoring-and-alerting" title="Link to this heading"></a></h2>
+<section id="log-monitoring">
+<h3>Log Monitoring<a class="headerlink" href="#log-monitoring" title="Link to this heading"></a></h3>
+<p>The system monitors audit logs for:</p>
+<ul class="simple">
+<li><p>Unusual access patterns</p></li>
+<li><p>Multiple failed login attempts</p></li>
+<li><p>Privilege escalation attempts</p></li>
+<li><p>Bulk data operations</p></li>
+<li><p>After-hours access</p></li>
+</ul>
+</section>
+<section id="alert-triggers">
+<h3>Alert Triggers<a class="headerlink" href="#alert-triggers" title="Link to this heading"></a></h3>
+<p>Automated alerts are sent for:</p>
+<ul class="simple">
+<li><p>Failed authentication spikes</p></li>
+<li><p>Administrative action outside business hours</p></li>
+<li><p>Bulk data exports</p></li>
+<li><p>Suspicious IP address patterns</p></li>
+<li><p>Database schema changes</p></li>
+</ul>
+</section>
+</section>
+<section id="compliance-features">
+<h2>Compliance Features<a class="headerlink" href="#compliance-features" title="Link to this heading"></a></h2>
+<section id="regulatory-compliance">
+<h3>Regulatory Compliance<a class="headerlink" href="#regulatory-compliance" title="Link to this heading"></a></h3>
+<p>The audit system supports:</p>
+<ul class="simple">
+<li><p><strong>SOX</strong>: Financial data access tracking</p></li>
+<li><p><strong>HIPAA</strong>: Healthcare data access logs</p></li>
+<li><p><strong>GDPR</strong>: Data processing activity logs</p></li>
+<li><p><strong>PCI DSS</strong>: Payment data access monitoring</p></li>
+</ul>
+</section>
+<section id="report-generation">
+<h3>Report Generation<a class="headerlink" href="#report-generation" title="Link to this heading"></a></h3>
+<p>Available compliance reports:</p>
+<ul class="simple">
+<li><p>User activity summaries</p></li>
+<li><p>Data access reports</p></li>
+<li><p>Administrative action logs</p></li>
+<li><p>Security incident timelines</p></li>
+<li><p>Compliance attestation reports</p></li>
+</ul>
+</section>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<section id="audit-system-tests">
+<h3>Audit System Tests<a class="headerlink" href="#audit-system-tests" title="Link to this heading"></a></h3>
+<p><strong>Location</strong>: <code class="docutils literal notranslate"><span class="pre">backend/apps/inventory/test_audit.py</span></code></p>
+<p>Test coverage includes:</p>
+<ul class="simple">
+<li><p>Audit log creation for all CRUD operations</p></li>
+<li><p>Middleware functionality</p></li>
+<li><p>Decorator behavior</p></li>
+<li><p>API endpoint security</p></li>
+<li><p>Report generation</p></li>
+<li><p>Data retention policies</p></li>
+</ul>
+</section>
+<section id="running-audit-tests">
+<h3>Running Audit Tests<a class="headerlink" href="#running-audit-tests" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all audit tests</span>
+python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>apps.inventory.test_audit
+
+<span class="c1"># Run specific audit test categories</span>
+python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>apps.inventory.test_audit.AuditLogModelTests
+python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>apps.inventory.test_audit.AuditMiddlewareTests
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<section id="missing-audit-logs">
+<h4>Missing Audit Logs<a class="headerlink" href="#missing-audit-logs" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Check if audit logging is enabled in settings</p></li>
+<li><p>Verify middleware is properly configured</p></li>
+<li><p>Check database permissions</p></li>
+<li><p>Review log retention settings</p></li>
+</ol>
+</section>
+<section id="performance-impact">
+<h4>Performance Impact<a class="headerlink" href="#performance-impact" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Monitor database query performance</p></li>
+<li><p>Consider async log writing</p></li>
+<li><p>Implement log batching</p></li>
+<li><p>Archive old logs regularly</p></li>
+</ol>
+</section>
+<section id="storage-concerns">
+<h4>Storage Concerns<a class="headerlink" href="#storage-concerns" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Monitor audit log table size</p></li>
+<li><p>Implement proper indexing</p></li>
+<li><p>Configure log rotation</p></li>
+<li><p>Set up archival processes</p></li>
+</ol>
+</section>
+</section>
+<section id="debug-commands">
+<h3>Debug Commands<a class="headerlink" href="#debug-commands" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check audit log status</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>shell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from apps.inventory.models import AuditLog; print(f&#39;Total logs: {AuditLog.objects.count()}&#39;)&quot;</span>
+
+<span class="c1"># Verify recent activity</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>shell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from apps.inventory.models import AuditLog; print(AuditLog.objects.order_by(&#39;-timestamp&#39;)[:5])&quot;</span>
+
+<span class="c1"># Check configuration</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>shell<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from django.conf import settings; print(settings.AUDIT_LOGGING)&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<section id="implementation-guidelines">
+<h3>Implementation Guidelines<a class="headerlink" href="#implementation-guidelines" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Always use audit decorators for sensitive operations</p></li>
+<li><p>Include meaningful context in audit details</p></li>
+<li><p>Test audit functionality with all new features</p></li>
+<li><p>Regularly review audit logs for anomalies</p></li>
+<li><p>Maintain separate audit database permissions</p></li>
+</ol>
+</section>
+<section id="security-recommendations">
+<h3>Security Recommendations<a class="headerlink" href="#security-recommendations" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Restrict audit log access to authorized personnel</p></li>
+<li><p>Regularly backup audit logs</p></li>
+<li><p>Monitor for audit log tampering attempts</p></li>
+<li><p>Implement log forwarding to SIEM systems</p></li>
+<li><p>Encrypt audit logs at rest</p></li>
+</ol>
+</section>
+<section id="performance-optimization">
+<h3>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Use async logging for high-traffic operations</p></li>
+<li><p>Implement proper database indexing</p></li>
+<li><p>Consider log sampling for very high-volume systems</p></li>
+<li><p>Use connection pooling for audit database</p></li>
+<li><p>Monitor and tune query performance</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This audit logging system is designed to provide comprehensive tracking while maintaining system performance and security. Regular reviews and updates ensure continued effectiveness and compliance.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="role-based-access.html" class="btn btn-neutral float-left" title="Role-Based Access Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data-protection.html" class="btn btn-neutral float-right" title="Data Protection and Privacy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,21 +1,60 @@
 // API client configuration
 const API_BASE = '/api';
 
-export interface Task {
-    id: number;
-    title: string;
-    description: string;
-    completed: boolean;
-    created_at: string;
-    updated_at: string;
+export interface Application {
+    id: string;
+    name: string;
+    description?: string;
+    lifecycle_stage: string;
+    criticality: string;
+    business_owner?: string;
+    technical_owner?: string;
+    primary_server_hostname?: string;
 }
 
-export interface Project {
+export interface Server {
+    id: number;
+    hostname: string;
+    name: string;
+    environment_type: string;
+    ip_address?: string;
+    operating_system?: string;
+    os_version?: string;
+    cpu_cores?: number;
+    memory_gb?: number;
+    storage_gb?: number;
+}
+
+export interface Language {
     id: number;
     name: string;
-    description: string;
-    created_at: string;
-    updated_at: string;
+    is_active?: boolean;
+}
+
+export interface Datastore {
+    id: number;
+    name: string;
+    datastore_type: string;
+}
+
+export interface DashboardStats {
+    total_applications: number;
+    active_applications: number;
+    by_lifecycle_stage?: Array<{
+        lifecycle_stage: string;
+        count: number;
+    }>;
+    by_criticality?: Array<{
+        criticality: string;
+        count: number;
+    }>;
+}
+
+export interface ApiResponse<T> {
+    results: T[];
+    count?: number;
+    next?: string;
+    previous?: string;
 }
 
 class ApiClient {

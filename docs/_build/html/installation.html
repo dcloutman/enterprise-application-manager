@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User Guide" href="user-guide/index.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-swarm-installation">Docker Swarm Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-setup">Initial Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h1>
+<p>This guide covers the installation and initial setup of the Enterprise Application Tracker.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p><strong>System Requirements</strong></p>
+<ul class="simple">
+<li><p>Docker 20.10+ and Docker Compose 2.0+</p></li>
+<li><p>4GB RAM minimum (8GB recommended)</p></li>
+<li><p>20GB available disk space</p></li>
+<li><p>Network access for container image downloads</p></li>
+</ul>
+<p><strong>Security Requirements</strong></p>
+<ul class="simple">
+<li><p>TLS/SSL certificates for production deployment</p></li>
+<li><p>Firewall configuration for required ports</p></li>
+<li><p>User accounts with appropriate permissions</p></li>
+</ul>
+</section>
+<section id="quick-installation">
+<h2>Quick Installation<a class="headerlink" href="#quick-installation" title="Link to this heading"></a></h2>
+<p><strong>1. Clone the Repository</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/dcloutman/enterprise-application-manager.git
+<span class="nb">cd</span><span class="w"> </span>enterprise-application-manager
+</pre></div>
+</div>
+<p><strong>2. Environment Configuration</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy environment template</span>
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+
+<span class="c1"># Edit configuration (see Configuration section)</span>
+nano<span class="w"> </span>.env
+</pre></div>
+</div>
+<p><strong>3. Start Services</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start all services using the CLI tool</span>
+./bin/eatcmd<span class="w"> </span>start
+
+<span class="c1"># Verify services are running</span>
+./bin/eatcmd<span class="w"> </span>status
+</pre></div>
+</div>
+<p><strong>4. Initial Setup</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the initial project setup</span>
+./bin/eatcmd<span class="w"> </span>setup
+
+<span class="c1"># Access the application shell to complete setup</span>
+./bin/eatcmd<span class="w"> </span>shell
+
+<span class="c1"># Inside the container, run migrations and setup RBAC</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+python<span class="w"> </span>setup_rbac.py
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+</pre></div>
+</div>
+<p><strong>5. Access the Application</strong></p>
+<ul class="simple">
+<li><p><strong>Web Interface</strong>: <a class="reference external" href="http://localhost">http://localhost</a></p></li>
+<li><p><strong>Admin Panel</strong>: <a class="reference external" href="http://localhost/admin/">http://localhost/admin/</a></p></li>
+<li><p><strong>API Documentation</strong>: <a class="reference external" href="http://localhost/api/">http://localhost/api/</a></p></li>
+</ul>
+</section>
+<section id="docker-swarm-installation">
+<h2>Docker Swarm Installation<a class="headerlink" href="#docker-swarm-installation" title="Link to this heading"></a></h2>
+<p>For production high-availability deployment:</p>
+<p><strong>1. Initialize Swarm</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># On manager node</span>
+docker<span class="w"> </span>swarm<span class="w"> </span>init
+
+<span class="c1"># Join worker nodes (run on each worker)</span>
+docker<span class="w"> </span>swarm<span class="w"> </span>join<span class="w"> </span>--token<span class="w"> </span>&lt;token&gt;<span class="w"> </span>&lt;manager-ip&gt;:2377
+</pre></div>
+</div>
+<p><strong>2. Deploy Stack</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deploy the application stack</span>
+docker<span class="w"> </span>stack<span class="w"> </span>deploy<span class="w"> </span>-c<span class="w"> </span>docker-stack.yml<span class="w"> </span>app-tracker
+
+<span class="c1"># Monitor deployment</span>
+docker<span class="w"> </span>stack<span class="w"> </span>services<span class="w"> </span>app-tracker
+</pre></div>
+</div>
+<p><strong>3. Configure Load Balancer</strong></p>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/nginx/sites-available/app-tracker</span>
+<span class="k">upstream</span><span class="w"> </span><span class="s">app_backend</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">node1</span><span class="p">:</span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">node2</span><span class="p">:</span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">node3</span><span class="p">:</span><span class="mi">80</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">your-domain.com</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/path/to/certificate.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/path/to/private.key</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://app_backend</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p><strong>Environment Variables</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Database Configuration</span>
+<span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>secure_root_password
+<span class="nv">MYSQL_DATABASE</span><span class="o">=</span>app_tracker
+<span class="nv">MYSQL_USER</span><span class="o">=</span>app_user
+<span class="nv">MYSQL_PASSWORD</span><span class="o">=</span>secure_app_password
+
+<span class="c1"># Django Settings</span>
+<span class="nv">DJANGO_SECRET_KEY</span><span class="o">=</span>your-secret-key-here
+<span class="nv">DJANGO_DEBUG</span><span class="o">=</span>False
+<span class="nv">DJANGO_ALLOWED_HOSTS</span><span class="o">=</span>your-domain.com,localhost
+
+<span class="c1"># Security Settings</span>
+<span class="nv">DJANGO_SECURE_SSL_REDIRECT</span><span class="o">=</span>True
+<span class="nv">DJANGO_SECURE_HSTS_SECONDS</span><span class="o">=</span><span class="m">31536000</span>
+<span class="nv">DJANGO_SESSION_COOKIE_SECURE</span><span class="o">=</span>True
+<span class="nv">DJANGO_CSRF_COOKIE_SECURE</span><span class="o">=</span>True
+
+<span class="c1"># Email Configuration (optional)</span>
+<span class="nv">EMAIL_HOST</span><span class="o">=</span>smtp.your-domain.com
+<span class="nv">EMAIL_PORT</span><span class="o">=</span><span class="m">587</span>
+<span class="nv">EMAIL_HOST_USER</span><span class="o">=</span>noreply@your-domain.com
+<span class="nv">EMAIL_HOST_PASSWORD</span><span class="o">=</span>email_password
+<span class="nv">EMAIL_USE_TLS</span><span class="o">=</span>True
+</pre></div>
+</div>
+<p><strong>Database Configuration</strong></p>
+<p>For production, consider using external managed database:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># settings/production.py</span>
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;app_tracker_prod&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;app_user&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;secure_password&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;your-rds-endpoint.amazonaws.com&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;3306&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;sql_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;traditional&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;charset&#39;</span><span class="p">:</span> <span class="s1">&#39;utf8mb4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;init_command&#39;</span><span class="p">:</span> <span class="s2">&quot;SET sql_mode=&#39;STRICT_TRANS_TABLES&#39;&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="initial-setup">
+<h2>Initial Setup<a class="headerlink" href="#initial-setup" title="Link to this heading"></a></h2>
+<p><strong>1. Create Initial Users</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the RBAC setup script</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>python<span class="w"> </span>setup_rbac.py
+</pre></div>
+</div>
+<p>This creates the following default users:</p>
+<ul class="simple">
+<li><p><strong>admin</strong> (Application Admin) - Password: admin123</p></li>
+<li><p><strong>sysmanager</strong> (Systems Manager) - Password: manager123</p></li>
+<li><p><strong>technician</strong> (Technician) - Password: tech123</p></li>
+<li><p><strong>bizmanager</strong> (Business Manager) - Password: biz123</p></li>
+<li><p><strong>bizuser</strong> (Business User) - Password: user123</p></li>
+</ul>
+<p><strong>**WARNING</strong> Important**: Change these default passwords immediately in production!</p>
+<p><strong>2. Configure System Settings</strong></p>
+<p>Access the admin panel at <a class="reference external" href="http://localhost/admin/">http://localhost/admin/</a> and configure:</p>
+<ul class="simple">
+<li><p>Site settings (domain, site name)</p></li>
+<li><p>Email configuration</p></li>
+<li><p>Security settings</p></li>
+<li><p>Cloud platform credentials (if using cloud integrations)</p></li>
+</ul>
+<p><strong>3. Import Initial Data</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load sample data using the shell command (optional for testing)</span>
+./bin/eatcmd<span class="w"> </span>shell
+<span class="c1"># Inside the container:</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>loaddata<span class="w"> </span>sample_data.json
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<p><strong>1. Service Health Check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check all services are running</span>
+./bin/eatcmd<span class="w"> </span>status
+
+<span class="c1"># Check logs for errors</span>
+./bin/eatcmd<span class="w"> </span>logs
+</pre></div>
+</div>
+<p><strong>2. Web Interface Test</strong></p>
+<ol class="arabic simple">
+<li><p>Navigate to <a class="reference external" href="http://localhost">http://localhost</a></p></li>
+<li><p>Login with admin credentials</p></li>
+<li><p>Verify dashboard loads properly</p></li>
+<li><p>Test basic navigation</p></li>
+</ol>
+<p><strong>3. API Test</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test API authentication</span>
+curl<span class="w"> </span>-u<span class="w"> </span>admin:admin123<span class="w"> </span>http://localhost/api/auth/profile/
+
+<span class="c1"># Test API endpoints</span>
+curl<span class="w"> </span>-u<span class="w"> </span>admin:admin123<span class="w"> </span>http://localhost/api/servers/
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Common Issues</strong></p>
+<p><em>Service won’t start</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check application logs</span>
+./bin/eatcmd<span class="w"> </span>logs
+
+<span class="c1"># Restart all services</span>
+./bin/eatcmd<span class="w"> </span>restart
+</pre></div>
+</div>
+<p><em>Database connection errors</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check service status</span>
+./bin/eatcmd<span class="w"> </span>status
+
+<span class="c1"># View detailed logs</span>
+./bin/eatcmd<span class="w"> </span>logs<span class="w"> </span>--follow
+
+<span class="c1"># Access database shell through application</span>
+./bin/eatcmd<span class="w"> </span>shell
+<span class="c1"># Inside container: python manage.py dbshell</span>
+</pre></div>
+</div>
+<p><em>Permission denied errors</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fix file permissions using the CLI tool</span>
+./bin/eatcmd<span class="w"> </span>setup
+
+<span class="c1"># Fix Docker socket permissions</span>
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">666</span><span class="w"> </span>/var/run/docker.sock
+</pre></div>
+</div>
+<p><strong>Getting Help</strong></p>
+<ul class="simple">
+<li><p>Check the logs: <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">logs</span></code></p></li>
+<li><p>Review configuration: Verify <code class="docutils literal notranslate"><span class="pre">.env</span></code> file settings</p></li>
+<li><p>Database issues: Ensure MySQL container has sufficient resources</p></li>
+<li><p>Network issues: Check firewall and Docker network configuration</p></li>
+</ul>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation:</p>
+<ol class="arabic simple">
+<li><p><strong>Security</strong>: Change default passwords and configure TLS</p></li>
+<li><p><strong>Users</strong>: Set up your organization’s user accounts and roles</p></li>
+<li><p><strong>Data</strong>: Begin importing your IT asset inventory</p></li>
+<li><p><strong>Integration</strong>: Configure cloud platform integrations</p></li>
+<li><p><strong>Backup</strong>: Set up regular database backups</p></li>
+<li><p><strong>Monitoring</strong>: Configure application monitoring and alerting</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user-guide/index.html" class="btn btn-neutral float-right" title="User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

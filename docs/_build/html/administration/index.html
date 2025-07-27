@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrator Guide &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Development Guide" href="../development/index.html" />
+    <link rel="prev" title="Deployment Guide" href="../deployment/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Administrator Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html">Audit Logging System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-administration-overview">System Administration Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard-overview">Dashboard Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-actions">Quick Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-management">User Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-management">Security Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-management">Data Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-monitoring">System Monitoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#backup-and-recovery">Backup and Recovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#maintenance-procedures">Maintenance Procedures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-guide">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#emergency-procedures">Emergency Procedures</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Administrator Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/administration/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="administrator-guide">
+<h1>Administrator Guide<a class="headerlink" href="#administrator-guide" title="Link to this heading"></a></h1>
+<p>This guide provides comprehensive information for system administrators managing the Enterprise Application Tracker.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../security/audit-logging.html">Audit Logging System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#logged-events">Logged Events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#audit-data-structure">Audit Data Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#audit-log-access">Audit Log Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#security-features">Security Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#monitoring-and-alerting">Monitoring and Alerting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#compliance-features">Compliance Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../security/audit-logging.html#best-practices">Best Practices</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="system-administration-overview">
+<h2>System Administration Overview<a class="headerlink" href="#system-administration-overview" title="Link to this heading"></a></h2>
+<p>As an Application Administrator, you have full access to all system functionality including:</p>
+<ul class="simple">
+<li><p><strong>User Management</strong>: Create, modify, and manage user accounts and roles</p></li>
+<li><p><strong>System Configuration</strong>: Configure application settings and security policies</p></li>
+<li><p><strong>Data Management</strong>: Oversee all data creation, modification, and deletion</p></li>
+<li><p><strong>Security Administration</strong>: Manage permissions, audit logs, and security settings</p></li>
+<li><p><strong>System Maintenance</strong>: Perform backups, updates, and system monitoring</p></li>
+</ul>
+</section>
+<section id="dashboard-overview">
+<h2>Dashboard Overview<a class="headerlink" href="#dashboard-overview" title="Link to this heading"></a></h2>
+<p>The administrator dashboard provides a comprehensive view of system status:</p>
+<p><strong>System Health Monitoring</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The administrator dashboard provides real-time system monitoring capabilities.</p>
+</div>
+<p>The dashboard displays:</p>
+<ul class="simple">
+<li><p><strong>Active Users</strong>: Current logged-in users and session information</p></li>
+<li><p><strong>System Performance</strong>: CPU, memory, and database performance metrics</p></li>
+<li><p><strong>Recent Activity</strong>: Latest user actions and system events</p></li>
+<li><p><strong>Security Alerts</strong>: Failed login attempts and security incidents</p></li>
+<li><p><strong>Data Statistics</strong>: Record counts and growth trends</p></li>
+</ul>
+</section>
+<section id="quick-actions">
+<h2>Quick Actions<a class="headerlink" href="#quick-actions" title="Link to this heading"></a></h2>
+<p><strong>Most Common Administrative Tasks</strong></p>
+<ol class="arabic">
+<li><p><strong>Create New User Account</strong></p>
+<p>Navigate to <em>Users → Add User</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Username</span><span class="p">:</span> <span class="n">john</span><span class="o">.</span><span class="n">doe</span>
+<span class="n">Email</span><span class="p">:</span> <span class="n">john</span><span class="o">.</span><span class="n">doe</span><span class="nd">@organization</span><span class="o">.</span><span class="n">com</span>
+<span class="n">First</span> <span class="n">Name</span><span class="p">:</span> <span class="n">John</span>
+<span class="n">Last</span> <span class="n">Name</span><span class="p">:</span> <span class="n">Doe</span>
+<span class="n">Role</span><span class="p">:</span> <span class="n">Business</span> <span class="n">User</span>
+<span class="n">Department</span><span class="p">:</span> <span class="n">IT</span> <span class="n">Operations</span>
+<span class="n">Phone</span><span class="p">:</span> <span class="p">(</span><span class="mi">555</span><span class="p">)</span> <span class="mi">123</span><span class="o">-</span><span class="mi">4567</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Reset User Password</strong></p>
+<p>Navigate to <em>Users → [Select User] → Reset Password</em></p>
+<p>System generates secure temporary password and sends via email.</p>
+</li>
+<li><p><strong>Bulk User Import</strong></p>
+<p>Navigate to <em>Users → Import → Upload CSV</em></p>
+<p>CSV format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">username</span><span class="p">,</span><span class="n">email</span><span class="p">,</span><span class="n">first_name</span><span class="p">,</span><span class="n">last_name</span><span class="p">,</span><span class="n">role</span><span class="p">,</span><span class="n">department</span><span class="p">,</span><span class="n">phone</span>
+<span class="n">jane</span><span class="o">.</span><span class="n">smith</span><span class="p">,</span><span class="n">jane</span><span class="o">.</span><span class="n">smith</span><span class="nd">@org</span><span class="o">.</span><span class="n">com</span><span class="p">,</span><span class="n">Jane</span><span class="p">,</span><span class="n">Smith</span><span class="p">,</span><span class="n">technician</span><span class="p">,</span><span class="n">IT</span><span class="p">,</span><span class="mi">555</span><span class="o">-</span><span class="mi">123</span><span class="o">-</span><span class="mi">4568</span>
+<span class="n">bob</span><span class="o">.</span><span class="n">johnson</span><span class="p">,</span><span class="n">bob</span><span class="o">.</span><span class="n">johnson</span><span class="nd">@org</span><span class="o">.</span><span class="n">com</span><span class="p">,</span><span class="n">Bob</span><span class="p">,</span><span class="n">Johnson</span><span class="p">,</span><span class="n">business_manager</span><span class="p">,</span><span class="n">Finance</span><span class="p">,</span><span class="mi">555</span><span class="o">-</span><span class="mi">123</span><span class="o">-</span><span class="mi">4569</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Generate System Report</strong></p>
+<p>Navigate to <em>Reports → System Usage → Generate</em></p>
+<p>Reports include:
+- User activity summaries
+- Data growth trends
+- Security incident reports
+- Performance metrics</p>
+</li>
+</ol>
+</section>
+<section id="user-management">
+<h2>User Management<a class="headerlink" href="#user-management" title="Link to this heading"></a></h2>
+<p><strong>User Account Lifecycle</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Stage</strong></p></th>
+<th class="head"><p><strong>Actions</strong></p></th>
+<th class="head"><p><strong>Considerations</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Creation</strong></p></td>
+<td><p>Create account, assign role, send welcome email</p></td>
+<td><p>Verify role appropriateness, department assignment</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Active Use</strong></p></td>
+<td><p>Monitor activity, update permissions as needed</p></td>
+<td><p>Regular access reviews, role changes</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Modification</strong></p></td>
+<td><p>Update profile, change roles, reset passwords</p></td>
+<td><p>Approval workflows for role elevation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Deactivation</strong></p></td>
+<td><p>Disable account, archive data, transfer ownership</p></td>
+<td><p>Data retention requirements, handover procedures</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Deletion</strong></p></td>
+<td><p>Remove account, anonymize data per policy</p></td>
+<td><p>Legal requirements, audit trail preservation</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Role Assignment Guidelines</strong></p>
+<p><strong>Business User Role</strong>
+- <strong>Intended For</strong>: General staff needing basic application information
+- <strong>Typical Departments</strong>: All departments
+- <strong>Access Level</strong>: Read-only access to public application data
+- <strong>Use Cases</strong>: Looking up application contacts, basic reporting</p>
+<p><strong>Business Manager Role</strong>
+- <strong>Intended For</strong>: Department managers and supervisors
+- <strong>Typical Departments</strong>: Department heads, team leaders
+- <strong>Access Level</strong>: Read access to business-focused data
+- <strong>Use Cases</strong>: Department reporting, resource planning</p>
+<p><strong>Technician Role</strong>
+- <strong>Intended For</strong>: Technical staff with hands-on responsibilities
+- <strong>Typical Departments</strong>: IT Operations, Development teams
+- <strong>Access Level</strong>: Edit access to assigned technical resources
+- <strong>Use Cases</strong>: Server maintenance, application updates</p>
+<p><strong>Systems Manager Role</strong>
+- <strong>Intended For</strong>: Senior technical staff and architects
+- <strong>Typical Departments</strong>: IT Management, System Architecture
+- <strong>Access Level</strong>: Full technical data access including system notes
+- <strong>Use Cases</strong>: System planning, technical documentation, troubleshooting</p>
+<p><strong>Application Administrator Role</strong>
+- <strong>Intended For</strong>: System administrators and security officers
+- <strong>Typical Departments</strong>: IT Security, System Administration
+- <strong>Access Level</strong>: Complete system access including user management
+- <strong>Use Cases</strong>: User account management, security configuration, system maintenance</p>
+</section>
+<section id="security-management">
+<h2>Security Management<a class="headerlink" href="#security-management" title="Link to this heading"></a></h2>
+<p><strong>Security Policy Configuration</strong></p>
+<p><strong>Password Policies</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure in Django Admin → Security Settings</span>
+
+<span class="n">PASSWORD_REQUIREMENTS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;minimum_length&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s1">&#39;require_uppercase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;require_lowercase&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;require_numbers&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;require_symbols&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;password_history&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>  <span class="c1"># Cannot reuse last 12 passwords</span>
+    <span class="s1">&#39;max_age_days&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>      <span class="c1"># Force change every 90 days</span>
+    <span class="s1">&#39;lockout_attempts&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>   <span class="c1"># Lock after 5 failed attempts</span>
+    <span class="s1">&#39;lockout_duration&#39;</span><span class="p">:</span> <span class="mi">900</span>  <span class="c1"># 15 minutes lockout</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Session Security</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SESSION_SECURITY</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;session_timeout&#39;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span>    <span class="c1"># 1 hour</span>
+    <span class="s1">&#39;concurrent_sessions&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;business_user&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;business_manager&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;technician&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;systems_manager&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;application_admin&#39;</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;ip_validation&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>      <span class="c1"># Bind session to IP</span>
+    <span class="s1">&#39;browser_validation&#39;</span><span class="p">:</span> <span class="kc">True</span>  <span class="c1"># Bind session to browser</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Audit Configuration</strong></p>
+<p>Enable comprehensive audit logging:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AUDIT_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;log_login_attempts&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;log_data_changes&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;log_permission_changes&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;log_admin_actions&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;retention_days&#39;</span><span class="p">:</span> <span class="mi">2555</span><span class="p">,</span>  <span class="c1"># 7 years</span>
+    <span class="s1">&#39;alert_on_suspicious_activity&#39;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Multi-Factor Authentication</strong></p>
+<p>Configure MFA requirements by role:</p>
+<ol class="arabic">
+<li><p>Navigate to <em>Security → MFA Settings</em></p></li>
+<li><p>Configure role-based requirements:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Application</span> <span class="n">Admin</span><span class="p">:</span> <span class="n">MFA</span> <span class="n">Required</span>
+<span class="n">Systems</span> <span class="n">Manager</span><span class="p">:</span> <span class="n">MFA</span> <span class="n">Required</span> <span class="k">for</span> <span class="n">Production</span> <span class="n">Access</span>
+<span class="n">Technician</span><span class="p">:</span> <span class="n">MFA</span> <span class="n">Recommended</span>
+<span class="n">Business</span> <span class="n">Manager</span><span class="p">:</span> <span class="n">MFA</span> <span class="n">Optional</span>
+<span class="n">Business</span> <span class="n">User</span><span class="p">:</span> <span class="n">MFA</span> <span class="n">Optional</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="data-management">
+<h2>Data Management<a class="headerlink" href="#data-management" title="Link to this heading"></a></h2>
+<p><strong>Data Quality Monitoring</strong></p>
+<p><strong>Automated Data Validation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run data quality checks</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">check_data_quality</span>
+
+<span class="c1"># Example output:</span>
+<span class="n">Data</span> <span class="n">Quality</span> <span class="n">Report</span> <span class="o">-</span> <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span>
+<span class="o">================================</span>
+
+<span class="n">Applications</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">245</span> <span class="n">records</span>
+<span class="o">-</span> <span class="mi">12</span> <span class="n">missing</span> <span class="n">descriptions</span>
+<span class="o">-</span> <span class="mi">3</span> <span class="n">invalid</span> <span class="n">URLs</span>
+<span class="o">-</span> <span class="mi">0</span> <span class="n">duplicate</span> <span class="n">names</span>
+
+<span class="n">Servers</span><span class="p">:</span> <span class="mi">856</span> <span class="n">records</span>
+<span class="o">-</span> <span class="mi">45</span> <span class="n">missing</span> <span class="n">system</span> <span class="n">manager</span> <span class="n">notes</span>
+<span class="o">-</span> <span class="mi">2</span> <span class="n">invalid</span> <span class="n">IP</span> <span class="n">addresses</span>
+<span class="o">-</span> <span class="mi">1</span> <span class="n">orphaned</span> <span class="n">record</span> <span class="p">(</span><span class="n">no</span> <span class="n">application</span> <span class="n">link</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Data Cleanup Procedures</strong></p>
+<ol class="arabic">
+<li><p><strong>Duplicate Detection</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find potential duplicates</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>find_duplicates<span class="w"> </span>--model<span class="o">=</span>Application<span class="w"> </span>--field<span class="o">=</span>name
+
+<span class="c1"># Review and merge duplicates</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>merge_duplicates<span class="w"> </span>--dry-run
+</pre></div>
+</div>
+</li>
+<li><p><strong>Orphaned Record Cleanup</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find orphaned servers (no linked application)</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>find_orphaned_records<span class="w"> </span>--model<span class="o">=</span>Server
+
+<span class="c1"># Clean orphaned records older than 90 days</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>cleanup_orphaned<span class="w"> </span>--days<span class="o">=</span><span class="m">90</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Data Archival</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Archive inactive applications (no activity &gt; 2 years)</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>archive_inactive_data<span class="w"> </span>--model<span class="o">=</span>Application<span class="w"> </span>--days<span class="o">=</span><span class="m">730</span>
+
+<span class="c1"># Verify archive integrity</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>verify_archives
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Data Export and Import</strong></p>
+<p><strong>Bulk Data Export</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export all applications to CSV</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>export_data<span class="w"> </span>--model<span class="o">=</span>Application<span class="w"> </span>--format<span class="o">=</span>csv<span class="w"> </span>--output<span class="o">=</span>/tmp/applications.csv
+
+<span class="c1"># Export with filtering</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>export_data<span class="w"> </span>--model<span class="o">=</span>Server<span class="w"> </span>--filter<span class="o">=</span><span class="s2">&quot;is_active=True&quot;</span><span class="w"> </span>--format<span class="o">=</span>json
+</pre></div>
+</div>
+<p><strong>Bulk Data Import</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import from CSV with validation</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>import_data<span class="w"> </span>--model<span class="o">=</span>Application<span class="w"> </span>--file<span class="o">=</span>/tmp/applications.csv<span class="w"> </span>--validate
+
+<span class="c1"># Import with conflict resolution</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>import_data<span class="w"> </span>--model<span class="o">=</span>Server<span class="w"> </span>--file<span class="o">=</span>/tmp/servers.json<span class="w"> </span>--on-conflict<span class="o">=</span>update
+</pre></div>
+</div>
+</section>
+<section id="system-monitoring">
+<h2>System Monitoring<a class="headerlink" href="#system-monitoring" title="Link to this heading"></a></h2>
+<p><strong>Performance Monitoring</strong></p>
+<p><strong>Database Performance</strong></p>
+<p>Monitor database performance through the admin interface:</p>
+<ul class="simple">
+<li><p>Navigate to <em>System → Database Performance</em></p></li>
+<li><p>Review slow query log</p></li>
+<li><p>Monitor connection usage</p></li>
+<li><p>Check index effectiveness</p></li>
+</ul>
+<p><strong>Key Metrics to Monitor</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Metric</strong></p></th>
+<th class="head"><p><strong>Warning Threshold</strong></p></th>
+<th class="head"><p><strong>Critical Threshold</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Response Time</strong></p></td>
+<td><p>&gt; 2 seconds</p></td>
+<td><p>&gt; 5 seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Database Connections</strong></p></td>
+<td><p>&gt; 80% of max</p></td>
+<td><p>&gt; 95% of max</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Memory Usage</strong></p></td>
+<td><p>&gt; 85%</p></td>
+<td><p>&gt; 95%</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Disk Usage</strong></p></td>
+<td><p>&gt; 80%</p></td>
+<td><p>&gt; 90%</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Failed Logins</strong></p></td>
+<td><p>&gt; 10 per hour</p></td>
+<td><p>&gt; 50 per hour</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automated Alerts</strong></p>
+<p>Configure email alerts for system events:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ALERT_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;high_cpu_usage&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;threshold&#39;</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span>
+        <span class="s1">&#39;recipients&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;admin@organization.com&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="s1">&#39;immediate&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;failed_logins&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;threshold&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s1">&#39;recipients&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;security@organization.com&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="s1">&#39;hourly_digest&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;system_errors&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;threshold&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;recipients&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;admin@organization.com&#39;</span><span class="p">,</span> <span class="s1">&#39;support@organization.com&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;frequency&#39;</span><span class="p">:</span> <span class="s1">&#39;immediate&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Health Check Dashboard</strong></p>
+<p>Access the system health dashboard at <code class="docutils literal notranslate"><span class="pre">/admin/system/health/</span></code>:</p>
+<ul class="simple">
+<li><p><strong>Service Status</strong>: Database, cache, email, storage</p></li>
+<li><p><strong>Performance Metrics</strong>: Response times, throughput, error rates</p></li>
+<li><p><strong>Resource Usage</strong>: CPU, memory, disk, network</p></li>
+<li><p><strong>Security Status</strong>: Failed logins, suspicious activity</p></li>
+</ul>
+</section>
+<section id="backup-and-recovery">
+<h2>Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Link to this heading"></a></h2>
+<p><strong>Backup Strategy</strong></p>
+<p><strong>Automated Daily Backups</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure automated backup (add to crontab)</span>
+<span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/app-tracker/scripts/backup.sh<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/backup.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+</div>
+<p><strong>Backup Components</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Database Backup</strong>
+- Full database dump with structure and data
+- Encrypted with GPG
+- Stored on separate storage system
+- Retention: 30 days daily, 12 months monthly</p></li>
+<li><p><strong>File System Backup</strong>
+- User uploaded files (/media directory)
+- System logs (/logs directory)
+- Configuration files
+- SSL certificates</p></li>
+<li><p><strong>Configuration Backup</strong>
+- Environment variables
+- Docker configurations
+- Nginx configurations
+- SSL certificates</p></li>
+</ol>
+<p><strong>Recovery Procedures</strong></p>
+<p><strong>Database Recovery</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List available backups</span>
+ls<span class="w"> </span>-la<span class="w"> </span>/backups/*.sql.gpg
+
+<span class="c1"># Decrypt and restore specific backup</span>
+gpg<span class="w"> </span>--decrypt<span class="w"> </span>/backups/db_backup_20240115_020000.sql.gpg<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span>app-tracker_mysql_1<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="si">${</span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><strong>Full System Recovery</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Full disaster recovery procedure</span>
+./scripts/disaster-recovery.sh<span class="w"> </span>/backups/backup_20240115_020000/
+</pre></div>
+</div>
+<p><strong>Testing Recovery Procedures</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test backup integrity monthly</span>
+./scripts/test-backup-integrity.sh
+
+<span class="c1"># Perform full recovery test quarterly</span>
+./scripts/full-recovery-test.sh
+</pre></div>
+</div>
+</section>
+<section id="maintenance-procedures">
+<h2>Maintenance Procedures<a class="headerlink" href="#maintenance-procedures" title="Link to this heading"></a></h2>
+<p><strong>Regular Maintenance Tasks</strong></p>
+<p><strong>Daily Tasks</strong>
+- Review system health dashboard
+- Check backup completion
+- Monitor security alerts
+- Review failed login attempts</p>
+<p><strong>Weekly Tasks</strong>
+- Analyze performance trends
+- Review user activity reports
+- Check data quality reports
+- Update security patches (if available)</p>
+<p><strong>Monthly Tasks</strong>
+- User access review
+- Clean up orphaned data
+- Generate compliance reports
+- Test backup recovery
+- Performance optimization review</p>
+<p><strong>Quarterly Tasks</strong>
+- Full security audit
+- Disaster recovery test
+- User role review
+- System capacity planning
+- Update documentation</p>
+<p><strong>System Updates</strong></p>
+<p><strong>Application Updates</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update to new version</span>
+./scripts/update-application.sh<span class="w"> </span>--version<span class="o">=</span><span class="m">0</span>.0.2<span class="w"> </span>--backup
+
+<span class="c1"># Rollback if needed</span>
+./scripts/rollback-application.sh<span class="w"> </span>--to-version<span class="o">=</span><span class="m">0</span>.0.1
+</pre></div>
+</div>
+<p><strong>Security Updates</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update base system packages</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+
+<span class="c1"># Update Python packages</span>
+docker-compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># Restart services</span>
+docker-compose<span class="w"> </span>restart
+</pre></div>
+</div>
+<p><strong>Database Maintenance</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Monthly optimization</span>
+<span class="n">OPTIMIZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">applications</span><span class="p">,</span><span class="w"> </span><span class="n">servers</span><span class="p">,</span><span class="w"> </span><span class="n">data_stores</span><span class="p">,</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+
+<span class="c1">-- Analyze table statistics</span>
+<span class="k">ANALYZE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">applications</span><span class="p">,</span><span class="w"> </span><span class="n">servers</span><span class="p">,</span><span class="w"> </span><span class="n">data_stores</span><span class="p">,</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+
+<span class="c1">-- Check table integrity</span>
+<span class="k">CHECK</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">applications</span><span class="p">,</span><span class="w"> </span><span class="n">servers</span><span class="p">,</span><span class="w"> </span><span class="n">data_stores</span><span class="p">,</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting-guide">
+<h2>Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h2>
+<p><strong>Common Issues and Solutions</strong></p>
+<p><strong>Issue 1: High Memory Usage</strong></p>
+<p><em>Symptoms</em>: Slow response times, container restarts</p>
+<p><em>Diagnosis</em>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check container memory usage
+docker stats</p>
+<p># Check database memory usage
+docker exec app-tracker_mysql_1 mysql -u root -p -e “SHOW STATUS LIKE ‘innodb_buffer_pool%’”</p>
+</div></blockquote>
+<p><em>Solutions</em>:
+- Increase container memory limits
+- Optimize database queries
+- Enable query caching
+- Consider database sharding</p>
+<p><strong>Issue 2: Database Connection Errors</strong></p>
+<p><em>Symptoms</em>: “Connection refused” errors, timeout errors</p>
+<p><em>Diagnosis</em>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check database connectivity using CLI shell
+./bin/eatcmd shell
+# Inside container: python manage.py dbshell</p>
+<p># Check application logs
+./bin/eatcmd logs</p>
+</div></blockquote>
+<p><em>Solutions</em>:
+- Check database service status
+- Verify credentials
+- Increase connection pool size
+- Check firewall rules</p>
+<p><strong>Issue 3: Authentication Issues</strong></p>
+<p><em>Symptoms</em>: Users cannot log in, permission denied errors</p>
+<p><em>Diagnosis</em>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check application logs for authentication issues
+./bin/eatcmd logs | grep -i auth</p>
+<p># Check user status using application shell
+./bin/eatcmd shell
+# Inside container:
+# python manage.py shell -c ”
+# from django.contrib.auth.models import User
+# user = User.objects.get(username=’problematic_user’)
+# print(f’Active: {user.is_active}, Staff: {user.is_staff}’)
+# “</p>
+</div></blockquote>
+<p><em>Solutions</em>:
+- Verify user account is active
+- Check password expiration
+- Verify role assignments
+- Clear user sessions</p>
+<p><strong>Issue 4: Performance Degradation</strong></p>
+<p><em>Symptoms</em>: Slow page loads, high CPU usage</p>
+<p><em>Diagnosis</em>:
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check slow queries
+docker exec app-tracker_mysql_1 mysql -u root -p -e ”
+SELECT query_time, lock_time, rows_examined, sql_text
+FROM mysql.slow_log
+ORDER BY query_time DESC
+LIMIT 10;”</p>
+<p># Check application performance
+docker exec app-tracker_backend_1 python manage.py shell -c ”
+from django.db import connection
+print(f’Query count: {len(connection.queries)}’)
+“</p>
+</div></blockquote>
+<p><em>Solutions</em>:
+- Add database indexes
+- Optimize slow queries
+- Enable caching
+- Scale horizontally</p>
+</section>
+<section id="emergency-procedures">
+<h2>Emergency Procedures<a class="headerlink" href="#emergency-procedures" title="Link to this heading"></a></h2>
+<p><strong>Security Incident Response</strong></p>
+<p><strong>Suspected Data Breach</strong></p>
+<ol class="arabic">
+<li><p><strong>Immediate Actions</strong>
+- Document the incident time and details
+- Preserve system logs
+- Isolate affected systems if needed
+- Notify security team</p></li>
+<li><p><strong>Investigation</strong>
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check for unauthorized access
+grep -i “failed|unauthorized|suspicious” /var/log/auth.log</p>
+<p># Review database access logs
+docker exec app-tracker_mysql_1 mysql -u root -p -e ”
+SELECT * FROM mysql.general_log
+WHERE event_time &gt; ‘2024-01-15 00:00:00’
+AND command_type = ‘Query’;”</p>
+</div></blockquote>
+</li>
+<li><p><strong>Containment</strong>
+- Reset passwords for affected accounts
+- Temporarily disable compromised accounts
+- Update firewall rules if needed</p></li>
+<li><p><strong>Recovery</strong>
+- Restore from clean backup if necessary
+- Apply security patches
+- Update access controls</p></li>
+</ol>
+<p><strong>System Outage</strong></p>
+<ol class="arabic">
+<li><p><strong>Assessment</strong>
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Check all services using CLI tool
+./bin/eatcmd status</p>
+<p># Get system information
+./bin/eatcmd info</p>
+<p># Check system resources
+df -h &amp;&amp; free -h &amp;&amp; top</p>
+</div></blockquote>
+</li>
+<li><p><strong>Recovery Actions</strong>
+.. code-block:: bash</p>
+<blockquote>
+<div><p># Restart all services
+./bin/eatcmd restart</p>
+<p># Stop and start if needed
+./bin/eatcmd stop
+./bin/eatcmd start</p>
+</div></blockquote>
+</li>
+<li><p><strong>Post-Incident</strong>
+- Document root cause
+- Implement preventive measures
+- Update monitoring
+- Notify stakeholders</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../deployment/index.html" class="btn btn-neutral float-left" title="Deployment Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../development/index.html" class="btn btn-neutral float-right" title="Development Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

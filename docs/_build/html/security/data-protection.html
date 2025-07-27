@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Protection and Privacy &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deployment Guide" href="../deployment/index.html" />
+    <link rel="prev" title="Audit Logging System" href="audit-logging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-reference/index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Security</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="role-based-access.html">Role-Based Access Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audit-logging.html">Audit Logging System</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Protection and Privacy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-classification-framework">Data Classification Framework</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encryption-at-rest">Encryption at Rest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encryption-in-transit">Encryption in Transit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-retention-policies">Data Retention Policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#privacy-controls">Privacy Controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-loss-prevention">Data Loss Prevention</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Security</a></li>
+      <li class="breadcrumb-item active">Data Protection and Privacy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/security/data-protection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-protection-and-privacy">
+<h1>Data Protection and Privacy<a class="headerlink" href="#data-protection-and-privacy" title="Link to this heading"></a></h1>
+<p>The Enterprise Application Tracker implements comprehensive data protection measures to ensure compliance with government regulations and enterprise privacy requirements.</p>
+<section id="data-classification-framework">
+<h2>Data Classification Framework<a class="headerlink" href="#data-classification-framework" title="Link to this heading"></a></h2>
+<p><strong>Classification Levels</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 25.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Level</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>Protection Requirements</strong></p></th>
+<th class="head"><p><strong>Examples</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Public</strong></p></td>
+<td><p>Information approved for public release</p></td>
+<td><p>Standard access controls</p></td>
+<td><p>Application descriptions, general documentation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Internal</strong></p></td>
+<td><p>Internal business information</p></td>
+<td><p>Authentication required</p></td>
+<td><p>Cost centers, business processes</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Confidential</strong></p></td>
+<td><p>Sensitive business/technical data</p></td>
+<td><p>Role-based access + encryption</p></td>
+<td><p>Server configurations, performance data</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Restricted</strong></p></td>
+<td><p>Highly sensitive information</p></td>
+<td><p>Multi-factor auth + audit logging</p></td>
+<td><p>Security settings, admin credentials</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Top Secret</strong></p></td>
+<td><p>Critical security information</p></td>
+<td><p>Highest privileges + special handling</p></td>
+<td><p>Encryption keys, security vulnerabilities</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automatic Classification</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DataClassificationService</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">classify_field</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="c1"># Automatic classification based on field patterns</span>
+        <span class="n">classification_rules</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;TOP_SECRET&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;secret&#39;</span><span class="p">:</span> <span class="s1">&#39;TOP_SECRET&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOP_SECRET&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;RESTRICTED&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;admin&#39;</span><span class="p">:</span> <span class="s1">&#39;RESTRICTED&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;system_manager_notes&#39;</span><span class="p">:</span> <span class="s1">&#39;RESTRICTED&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;cost_center&#39;</span><span class="p">:</span> <span class="s1">&#39;INTERNAL&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;business_owner&#39;</span><span class="p">:</span> <span class="s1">&#39;INTERNAL&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;PUBLIC&#39;</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">classification_rules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">field_name</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">level</span>
+
+        <span class="c1"># Content-based classification</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b(password|secret|private)\b&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="s1">&#39;TOP_SECRET&#39;</span>
+        <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\b(admin|root|privileged)\b&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+            <span class="k">return</span> <span class="s1">&#39;RESTRICTED&#39;</span>
+
+        <span class="k">return</span> <span class="s1">&#39;INTERNAL&#39;</span>  <span class="c1"># Default classification</span>
+</pre></div>
+</div>
+</section>
+<section id="encryption-at-rest">
+<h2>Encryption at Rest<a class="headerlink" href="#encryption-at-rest" title="Link to this heading"></a></h2>
+<p><strong>Database Encryption</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Field-level encryption for sensitive data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cryptography.fernet</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fernet</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.conf</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EncryptedField</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fernet</span> <span class="o">=</span> <span class="n">Fernet</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">FIELD_ENCRYPTION_KEY</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_db_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">expression</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fernet</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>  <span class="c1"># Fallback for unencrypted legacy data</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_prep_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fernet</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="c1"># Model with encrypted fields</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Server</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">system_manager_notes</span> <span class="o">=</span> <span class="n">EncryptedField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">admin_password</span> <span class="o">=</span> <span class="n">EncryptedField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">db_table</span> <span class="o">=</span> <span class="s1">&#39;servers&#39;</span>
+</pre></div>
+</div>
+<p><strong>File System Encryption</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker volume encryption</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mysql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">volume</span>
+<span class="w">        </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data_encrypted</span>
+<span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/mysql</span>
+<span class="w">        </span><span class="nt">volume</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">driver_opts</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;encrypted&quot;</span>
+<span class="w">            </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/dev/mapper/mysql-data&quot;</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mysql_data_encrypted</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">    </span><span class="nt">driver_opts</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">luks</span>
+<span class="w">      </span><span class="nt">device</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/dev/sdb1</span>
+</pre></div>
+</div>
+<p><strong>Backup Encryption</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># Encrypted backup script</span>
+
+<span class="c1"># Database backup with encryption</span>
+mysqldump<span class="w"> </span>--single-transaction<span class="w"> </span>app_tracker<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+gpg<span class="w"> </span>--symmetric<span class="w"> </span>--cipher-algo<span class="w"> </span>AES256<span class="w"> </span>--compress-algo<span class="w"> </span><span class="m">2</span><span class="w"> </span>--s2k-mode<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--s2k-digest-algo<span class="w"> </span>SHA512<span class="w"> </span>--s2k-count<span class="w"> </span><span class="m">65011712</span><span class="w"> </span>--quiet<span class="w"> </span>--no-greeting<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>&gt;<span class="w"> </span>backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M%S<span class="k">)</span>.sql.gpg
+
+<span class="c1"># File backup with tar and gpg</span>
+tar<span class="w"> </span>czf<span class="w"> </span>-<span class="w"> </span>/app/media<span class="w"> </span>/app/logs<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+gpg<span class="w"> </span>--symmetric<span class="w"> </span>--cipher-algo<span class="w"> </span>AES256<span class="w"> </span>--compress-algo<span class="w"> </span><span class="m">2</span><span class="w"> </span>--s2k-mode<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--s2k-digest-algo<span class="w"> </span>SHA512<span class="w"> </span>--s2k-count<span class="w"> </span><span class="m">65011712</span><span class="w"> </span>--quiet<span class="w"> </span>--no-greeting<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>&gt;<span class="w"> </span>files_backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d_%H%M%S<span class="k">)</span>.tar.gz.gpg
+</pre></div>
+</div>
+</section>
+<section id="encryption-in-transit">
+<h2>Encryption in Transit<a class="headerlink" href="#encryption-in-transit" title="Link to this heading"></a></h2>
+<p><strong>HTTPS Configuration</strong></p>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nginx SSL configuration</span>
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">app-tracker.example.com</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1"># SSL certificates</span>
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w"> </span><span class="s">/etc/ssl/certs/app-tracker.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/ssl/private/app-tracker.key</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1"># SSL security settings</span>
+<span class="w">    </span><span class="kn">ssl_protocols</span><span class="w"> </span><span class="s">TLSv1.2</span><span class="w"> </span><span class="s">TLSv1.3</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_ciphers</span><span class="w"> </span><span class="s">ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1"># HSTS</span>
+<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">&quot;max-age=63072000&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1"># Security headers</span>
+<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">X-Frame-Options</span><span class="w"> </span><span class="s">DENY</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">X-Content-Type-Options</span><span class="w"> </span><span class="s">nosniff</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">X-XSS-Protection</span><span class="w"> </span><span class="s">&quot;1</span><span class="p">;</span><span class="w"> </span><span class="kn">mode=block&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Content-Security-Policy</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">script-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">&#39;unsafe-inline&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">style-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">&#39;unsafe-inline&#39;&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://backend:8000</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Database Connection Security</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Django database settings with SSL</span>
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;app_tracker&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;app_user&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;3306&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;ssl&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;ca&#39;</span><span class="p">:</span> <span class="s1">&#39;/etc/ssl/certs/ca-cert.pem&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;cert&#39;</span><span class="p">:</span> <span class="s1">&#39;/etc/ssl/certs/client-cert.pem&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="s1">&#39;/etc/ssl/private/client-key.pem&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;sql_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;STRICT_TRANS_TABLES&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;charset&#39;</span><span class="p">:</span> <span class="s1">&#39;utf8mb4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;use_unicode&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>API Security</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Secure API communication</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SecureAPIMiddleware</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">get_response</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span> <span class="o">=</span> <span class="n">get_response</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c1"># Enforce HTTPS</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">is_secure</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">HttpResponsePermanentRedirect</span><span class="p">(</span>
+                <span class="s1">&#39;https://&#39;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">get_host</span><span class="p">()</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">get_full_path</span><span class="p">()</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Validate Content-Type for POST/PUT requests</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;PUT&#39;</span><span class="p">,</span> <span class="s1">&#39;PATCH&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">content_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">HttpResponseBadRequest</span><span class="p">(</span><span class="s1">&#39;Invalid Content-Type&#39;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="c1"># Security headers</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">&#39;X-Frame-Options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;DENY&#39;</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">&#39;X-Content-Type-Options&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;nosniff&#39;</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">&#39;X-XSS-Protection&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1; mode=block&#39;</span>
+        <span class="n">response</span><span class="p">[</span><span class="s1">&#39;Referrer-Policy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;strict-origin-when-cross-origin&#39;</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+</div>
+</section>
+<section id="data-retention-policies">
+<h2>Data Retention Policies<a class="headerlink" href="#data-retention-policies" title="Link to this heading"></a></h2>
+<p><strong>Retention Schedules</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Data Type</strong></p></th>
+<th class="head"><p><strong>Retention Period</strong></p></th>
+<th class="head"><p><strong>Archive Period</strong></p></th>
+<th class="head"><p><strong>Disposal Method</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>User Activity Logs</p></td>
+<td><p>2 years</p></td>
+<td><p>5 years</p></td>
+<td><p>Secure deletion</p></td>
+</tr>
+<tr class="row-odd"><td><p>System Configuration</p></td>
+<td><p>5 years</p></td>
+<td><p>10 years</p></td>
+<td><p>Encrypted archive</p></td>
+</tr>
+<tr class="row-even"><td><p>Business Data</p></td>
+<td><p>7 years</p></td>
+<td><p>Indefinite</p></td>
+<td><p>Migration to archive</p></td>
+</tr>
+<tr class="row-odd"><td><p>Security Logs</p></td>
+<td><p>5 years</p></td>
+<td><p>10 years</p></td>
+<td><p>Encrypted archive</p></td>
+</tr>
+<tr class="row-even"><td><p>Personal Data</p></td>
+<td><p>As required by law</p></td>
+<td><p>N/A</p></td>
+<td><p>Right to erasure</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Automated Retention Management</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">django.core.management.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseCommand</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+    <span class="n">help</span> <span class="o">=</span> <span class="s1">&#39;Apply data retention policies&#39;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="c1"># Activity logs retention (2 years)</span>
+        <span class="n">cutoff_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">730</span><span class="p">)</span>
+        <span class="n">old_logs</span> <span class="o">=</span> <span class="n">ActivityLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">timestamp__lt</span><span class="o">=</span><span class="n">cutoff_date</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Archiving </span><span class="si">{</span><span class="n">old_logs</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="si">}</span><span class="s1"> activity logs&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">old_logs</span><span class="p">:</span>
+            <span class="c1"># Archive to long-term storage</span>
+            <span class="n">archive_log</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+
+        <span class="c1"># Personal data cleanup (GDPR compliance)</span>
+        <span class="n">inactive_users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">last_login__lt</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1095</span><span class="p">),</span>  <span class="c1"># 3 years</span>
+            <span class="n">is_active</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">inactive_users</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s1">&#39;business_user&#39;</span><span class="p">:</span>
+                <span class="c1"># Anonymize personal data</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Deleted User </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;deleted_</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">@example.com&#39;</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Anonymized user </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Data Archival Process</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">archive_data</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">archive_date</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Archive old data to long-term storage&quot;&quot;&quot;</span>
+
+    <span class="c1"># Export to encrypted JSON</span>
+    <span class="n">old_records</span> <span class="o">=</span> <span class="n">model_class</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">modified_date__lt</span><span class="o">=</span><span class="n">archive_date</span>
+    <span class="p">)</span>
+
+    <span class="n">archive_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">old_records</span><span class="p">:</span>
+        <span class="c1"># Serialize with encryption for sensitive fields</span>
+        <span class="n">serialized</span> <span class="o">=</span> <span class="n">model_to_dict</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="c1"># Encrypt sensitive fields</span>
+        <span class="k">for</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">serialized</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">is_sensitive_field</span><span class="p">(</span><span class="n">model_class</span><span class="p">,</span> <span class="n">field_name</span><span class="p">):</span>
+                <span class="n">serialized</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">encrypt_field_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="n">archive_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">serialized</span><span class="p">)</span>
+
+    <span class="c1"># Store in encrypted archive</span>
+    <span class="n">archive_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;archive_</span><span class="si">{</span><span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">archive_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">.json.gpg&#39;</span>
+    <span class="n">encrypted_data</span> <span class="o">=</span> <span class="n">encrypt_json</span><span class="p">(</span><span class="n">archive_data</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/archives/</span><span class="si">{</span><span class="n">archive_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">)</span>
+
+    <span class="c1"># Verify archive integrity</span>
+    <span class="k">if</span> <span class="n">verify_archive_integrity</span><span class="p">(</span><span class="n">archive_file</span><span class="p">):</span>
+        <span class="c1"># Remove from active database</span>
+        <span class="n">old_records</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Archived </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">archive_data</span><span class="p">)</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1"> records&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Archive verification failed for </span><span class="si">{</span><span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="privacy-controls">
+<h2>Privacy Controls<a class="headerlink" href="#privacy-controls" title="Link to this heading"></a></h2>
+<p><strong>Data Minimization</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DataMinimizationMixin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure only necessary data is collected and stored&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+
+        <span class="c1"># Remove unnecessary whitespace and normalize data</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">)):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+        <span class="c1"># Validate data necessity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_data_necessity</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_data_necessity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override in subclasses to validate data collection&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p><strong>Consent Management</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ConsentRecord</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
+    <span class="n">consent_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;data_processing&#39;</span><span class="p">,</span> <span class="s1">&#39;Data Processing&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;analytics&#39;</span><span class="p">,</span> <span class="s1">&#39;Analytics&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;marketing&#39;</span><span class="p">,</span> <span class="s1">&#39;Marketing Communications&#39;</span><span class="p">),</span>
+    <span class="p">])</span>
+    <span class="n">granted</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">granted_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span>
+    <span class="n">withdrawn_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">consent_version</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">unique_together</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;consent_type&#39;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_consent</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">consent_type</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if user has granted specific consent&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">consent</span> <span class="o">=</span> <span class="n">ConsentRecord</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">consent_type</span><span class="o">=</span><span class="n">consent_type</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">consent</span><span class="o">.</span><span class="n">granted</span> <span class="ow">and</span> <span class="n">consent</span><span class="o">.</span><span class="n">withdrawn_date</span> <span class="ow">is</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="n">ConsentRecord</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p><strong>Right to Erasure (GDPR Article 17)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DataErasureService</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_erasure_request</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process user&#39;s right to erasure request&quot;&quot;&quot;</span>
+
+        <span class="c1"># Log the request</span>
+        <span class="n">ErasureRequest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+            <span class="n">requested_date</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+            <span class="n">status</span><span class="o">=</span><span class="s1">&#39;pending&#39;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Check if erasure is legally required</span>
+        <span class="k">if</span> <span class="n">DataErasureService</span><span class="o">.</span><span class="n">can_erase_user_data</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">DataErasureService</span><span class="o">.</span><span class="n">erase_user_data</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;reason&#39;</span><span class="p">:</span> <span class="s1">&#39;Legal obligations prevent data erasure&#39;</span>
+            <span class="p">}</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">erase_user_data</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Securely erase user&#39;s personal data&quot;&quot;&quot;</span>
+
+        <span class="c1"># Anonymize instead of delete to preserve system integrity</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Erased User&#39;</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;erased_</span><span class="si">{</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="si">}</span><span class="s1">@example.com&#39;</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;erased_</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">is_active</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="c1"># Remove profile data</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;profile&#39;</span><span class="p">):</span>
+            <span class="n">profile</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span>
+            <span class="n">profile</span><span class="o">.</span><span class="n">phone_number</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">profile</span><span class="o">.</span><span class="n">department</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="n">profile</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="c1"># Remove from activity logs (where legally permissible)</span>
+        <span class="n">ActivityLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">user_identifier</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;erased_user_</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Secure deletion of cached data</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">delete_many</span><span class="p">([</span>
+            <span class="sa">f</span><span class="s1">&#39;user_profile_</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">&#39;user_permissions_</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s1">&#39;user_activity_</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">])</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;User data erased successfully&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Data Portability (GDPR Article 20)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DataPortabilityService</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_user_data</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Export user&#39;s data in portable format&quot;&quot;&quot;</span>
+
+        <span class="n">export_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;personal_information&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+                <span class="s1">&#39;date_joined&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">date_joined</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                <span class="s1">&#39;last_login&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">last_login</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">last_login</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;profile_data&#39;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s1">&#39;activity_logs&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;permissions&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;created_records&#39;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Profile data</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="s1">&#39;profile&#39;</span><span class="p">):</span>
+            <span class="n">export_data</span><span class="p">[</span><span class="s1">&#39;profile_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">role</span><span class="p">,</span>
+                <span class="s1">&#39;department&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">department</span><span class="p">,</span>
+                <span class="s1">&#39;phone_number&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">phone_number</span><span class="p">,</span>
+                <span class="s1">&#39;created_date&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">created_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+            <span class="p">}</span>
+
+        <span class="c1"># Activity logs (last 2 years)</span>
+        <span class="n">cutoff_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">730</span><span class="p">)</span>
+        <span class="n">activity_logs</span> <span class="o">=</span> <span class="n">ActivityLog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+            <span class="n">timestamp__gte</span><span class="o">=</span><span class="n">cutoff_date</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">activity_logs</span><span class="p">:</span>
+            <span class="n">export_data</span><span class="p">[</span><span class="s1">&#39;activity_logs&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">action</span><span class="p">,</span>
+                <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                <span class="s1">&#39;ip_address&#39;</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">ip_address</span><span class="p">,</span>
+                <span class="s1">&#39;details&#39;</span><span class="p">:</span> <span class="n">log</span><span class="o">.</span><span class="n">details</span>
+            <span class="p">})</span>
+
+        <span class="c1"># User permissions</span>
+        <span class="n">permissions</span> <span class="o">=</span> <span class="n">RecordPermission</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">perm</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">:</span>
+            <span class="n">export_data</span><span class="p">[</span><span class="s1">&#39;permissions&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;permission_type&#39;</span><span class="p">:</span> <span class="n">perm</span><span class="o">.</span><span class="n">permission_type</span><span class="p">,</span>
+                <span class="s1">&#39;granted_date&#39;</span><span class="p">:</span> <span class="n">perm</span><span class="o">.</span><span class="n">granted_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                <span class="s1">&#39;expires_at&#39;</span><span class="p">:</span> <span class="n">perm</span><span class="o">.</span><span class="n">expires_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">perm</span><span class="o">.</span><span class="n">expires_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="c1"># Records created by user</span>
+        <span class="k">for</span> <span class="n">model_class</span> <span class="ow">in</span> <span class="p">[</span><span class="n">Application</span><span class="p">,</span> <span class="n">Server</span><span class="p">,</span> <span class="n">DataStore</span><span class="p">]:</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="n">model_class</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">created_by</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="n">export_data</span><span class="p">[</span><span class="s1">&#39;created_records&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">model_class</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+                    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">)),</span>
+                    <span class="s1">&#39;created_date&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">created_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">export_data</span>
+</pre></div>
+</div>
+</section>
+<section id="data-loss-prevention">
+<h2>Data Loss Prevention<a class="headerlink" href="#data-loss-prevention" title="Link to this heading"></a></h2>
+<p><strong>Automated DLP Scanning</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DLPScanner</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scan_for_sensitive_data</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Scan text for sensitive information patterns&quot;&quot;&quot;</span>
+
+        <span class="n">patterns</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;ssn&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\b\d</span><span class="si">{3}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">-\d</span><span class="si">{4}</span><span class="s1">\b&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;credit_card&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\b\d</span><span class="si">{4}</span><span class="s1">[-\s]?\d</span><span class="si">{4}</span><span class="s1">[-\s]?\d</span><span class="si">{4}</span><span class="s1">[-\s]?\d</span><span class="si">{4}</span><span class="s1">\b&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;phone&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;\b\d</span><span class="si">{3}</span><span class="s1">[-.]?\d</span><span class="si">{3}</span><span class="s1">[-.]?\d</span><span class="si">{4}</span><span class="s1">\b&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;(password|pwd|pass)\s*[:=]\s*\S+&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">findings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">pattern_name</span><span class="p">,</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+                <span class="n">findings</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">pattern_name</span><span class="p">,</span>
+                    <span class="s1">&#39;match&#39;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span>
+                    <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">(),</span>
+                    <span class="s1">&#39;severity&#39;</span><span class="p">:</span> <span class="s1">&#39;HIGH&#39;</span> <span class="k">if</span> <span class="n">pattern_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ssn&#39;</span><span class="p">,</span> <span class="s1">&#39;credit_card&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;MEDIUM&#39;</span>
+                <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">findings</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prevent_data_exfiltration</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">response_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prevent sensitive data from leaving the system&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">response_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">response_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">response_data</span><span class="p">)</span>
+
+        <span class="n">findings</span> <span class="o">=</span> <span class="n">DLPScanner</span><span class="o">.</span><span class="n">scan_for_sensitive_data</span><span class="p">(</span><span class="n">response_str</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">findings</span><span class="p">:</span>
+            <span class="c1"># Log potential data leak</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Potential data leak prevented for user </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Remove sensitive data</span>
+            <span class="k">for</span> <span class="n">finding</span> <span class="ow">in</span> <span class="n">findings</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">finding</span><span class="p">[</span><span class="s1">&#39;severity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HIGH&#39;</span><span class="p">:</span>
+                    <span class="n">response_str</span> <span class="o">=</span> <span class="n">response_str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+                        <span class="n">finding</span><span class="p">[</span><span class="s1">&#39;match&#39;</span><span class="p">],</span>
+                        <span class="s1">&#39;[REDACTED]&#39;</span>
+                    <span class="p">)</span>
+
+            <span class="c1"># Return sanitized data</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_str</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">response_str</span>
+
+        <span class="k">return</span> <span class="n">response_data</span>
+</pre></div>
+</div>
+<p><strong>File Upload Security</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SecureFileUploadHandler</span><span class="p">:</span>
+    <span class="n">ALLOWED_EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;.doc&#39;</span><span class="p">,</span> <span class="s1">&#39;.docx&#39;</span><span class="p">,</span> <span class="s1">&#39;.xls&#39;</span><span class="p">,</span> <span class="s1">&#39;.xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;.csv&#39;</span><span class="p">]</span>
+    <span class="n">MAX_FILE_SIZE</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>  <span class="c1"># 10MB</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_file</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate uploaded file for security&quot;&quot;&quot;</span>
+
+        <span class="c1"># Check file size</span>
+        <span class="k">if</span> <span class="n">uploaded_file</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">SecureFileUploadHandler</span><span class="o">.</span><span class="n">MAX_FILE_SIZE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;File too large&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Check file extension</span>
+        <span class="n">file_ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">file_ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SecureFileUploadHandler</span><span class="o">.</span><span class="n">ALLOWED_EXTENSIONS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;File type not allowed&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Scan for malware (integrate with antivirus)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">SecureFileUploadHandler</span><span class="o">.</span><span class="n">scan_for_malware</span><span class="p">(</span><span class="n">uploaded_file</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;File failed security scan&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Check for sensitive data</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">uploaded_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">uploaded_file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Reset file pointer</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+                <span class="c1"># Binary file, skip content scan</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">findings</span> <span class="o">=</span> <span class="n">DLPScanner</span><span class="o">.</span><span class="n">scan_for_sensitive_data</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">high_risk_findings</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">findings</span> <span class="k">if</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;severity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;HIGH&#39;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">high_risk_findings</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s1">&#39;File contains sensitive information&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="audit-logging.html" class="btn btn-neutral float-left" title="Audit Logging System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../deployment/index.html" class="btn btn-neutral float-right" title="Deployment Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

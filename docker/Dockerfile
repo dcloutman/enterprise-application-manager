@@ -1,5 +1,5 @@
 # Multi-stage build for Django + SvelteKit application
-FROM oraclelinux:8 AS frontend-builder
+FROM oraclelinux:9 AS frontend-builder
 
 # Install Node.js 22 LTS via nvm for frontend build
 ENV NVM_DIR=/root/.nvm
@@ -20,15 +20,20 @@ RUN . "$NVM_DIR/nvm.sh" && npm ci
 COPY frontend/ .
 RUN . "$NVM_DIR/nvm.sh" && npm run build
 
-FROM oraclelinux:8 AS backend-base
+FROM oraclelinux:9 AS backend-base
 
 # Install Python 3.12 and development tools
 RUN dnf update -y && \
     dnf install -y python3.12 python3.12-pip python3.12-devel \
     gcc gcc-c++ make \
-    mysql-devel \
+    pkgconfig \
     curl \
     && dnf clean all
+
+# Add MySQL repo and install MySQL client development packages
+RUN dnf install -y https://dev.mysql.com/get/mysql84-community-release-el9-1.noarch.rpm && \
+    dnf install -y mysql-community-devel && \
+    dnf clean all
 
 # Install nvm and Node.js 22 LTS
 ENV NVM_DIR=/root/.nvm
@@ -43,9 +48,6 @@ ENV PATH="$NVM_DIR/versions/node/$(. "$NVM_DIR/nvm.sh" && nvm version default)/b
 
 # Install system dependencies
 RUN dnf install -y \
-    pkgconfig \
-    mysql-devel \
-    gcc gcc-c++ make \
     nc \
     && dnf clean all
 
@@ -55,9 +57,14 @@ WORKDIR /app
 COPY backend/requirements.txt ./
 RUN python3.12 -m pip install --no-cache-dir -r requirements.txt
 RUN python3.12 -m pip install gunicorn mysqlclient
+RUN python3.12 -m pip install sphinx sphinx-rtd-theme
 
 # Copy backend code
 COPY backend/ ./backend/
+
+# Copy and build documentation
+COPY docs/ ./docs/
+RUN cd docs && sphinx-build -b html . _build/html
 
 # Copy built frontend from previous stage
 COPY --from=frontend-builder /app/frontend/build ./frontend/build

@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; Enterprise Application Tracker 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Authentication" href="authentication.html" />
+    <link rel="prev" title="API Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Enterprise Application Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id1">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html#id2">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html">API Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base-url">Base URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#standard-response-format">Standard Response Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-codes">Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pagination">Pagination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-and-searching">Filtering and Searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sorting">Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#field-selection">Field Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bulk-operations">Bulk Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#webhooks">Webhooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-versioning">API Versioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sdk-and-client-libraries">SDK and Client Libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-and-development">Testing and Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">API Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../security/index.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../administration/index.html">Administrator Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendices/index.html">Appendices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Enterprise Application Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api-reference/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>This section provides comprehensive documentation for all API endpoints in the Enterprise Application Tracker.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="authentication.html">API Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-methods">Authentication Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#api-permissions">API Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#api-versioning">API Versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#error-responses">Error Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#api-testing">API Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#sdk-and-libraries">SDK and Libraries</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="base-url">
+<h2>Base URL<a class="headerlink" href="#base-url" title="Link to this heading"></a></h2>
+<p>All API endpoints are relative to the base URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h2>
+<p>All API endpoints require authentication except where noted. See <a class="reference internal" href="authentication.html"><span class="doc">API Authentication</span></a> for detailed authentication methods.</p>
+</section>
+<section id="standard-response-format">
+<h2>Standard Response Format<a class="headerlink" href="#standard-response-format" title="Link to this heading"></a></h2>
+<p>All API responses follow a consistent format:</p>
+<p><strong>Success Response (2xx)</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Response data here</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;pagination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com/endpoint?page=2&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Error Response (4xx/5xx)</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VALIDATION_ERROR&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid input data&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;This field is required.&quot;</span><span class="p">],</span>
+<span class="w">            </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Enter a valid email address.&quot;</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="http-status-codes">
+<h2>HTTP Status Codes<a class="headerlink" href="#http-status-codes" title="Link to this heading"></a></h2>
+<p>The API uses standard HTTP status codes:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 20.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Code</strong></p></th>
+<th class="head"><p><strong>Status</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>200</p></td>
+<td><p>OK</p></td>
+<td><p>Request successful</p></td>
+</tr>
+<tr class="row-odd"><td><p>201</p></td>
+<td><p>Created</p></td>
+<td><p>Resource created successfully</p></td>
+</tr>
+<tr class="row-even"><td><p>204</p></td>
+<td><p>No Content</p></td>
+<td><p>Request successful, no content returned</p></td>
+</tr>
+<tr class="row-odd"><td><p>400</p></td>
+<td><p>Bad Request</p></td>
+<td><p>Invalid request data</p></td>
+</tr>
+<tr class="row-even"><td><p>401</p></td>
+<td><p>Unauthorized</p></td>
+<td><p>Authentication required</p></td>
+</tr>
+<tr class="row-odd"><td><p>403</p></td>
+<td><p>Forbidden</p></td>
+<td><p>Insufficient permissions</p></td>
+</tr>
+<tr class="row-even"><td><p>404</p></td>
+<td><p>Not Found</p></td>
+<td><p>Resource not found</p></td>
+</tr>
+<tr class="row-odd"><td><p>409</p></td>
+<td><p>Conflict</p></td>
+<td><p>Resource conflict (e.g., duplicate name)</p></td>
+</tr>
+<tr class="row-even"><td><p>422</p></td>
+<td><p>Unprocessable Entity</p></td>
+<td><p>Validation error</p></td>
+</tr>
+<tr class="row-odd"><td><p>429</p></td>
+<td><p>Too Many Requests</p></td>
+<td><p>Rate limit exceeded</p></td>
+</tr>
+<tr class="row-even"><td><p>500</p></td>
+<td><p>Internal Server Error</p></td>
+<td><p>Server error</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="error-codes">
+<h2>Error Codes<a class="headerlink" href="#error-codes" title="Link to this heading"></a></h2>
+<p>Custom error codes provide specific error information:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Error Code</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VALIDATION_ERROR</p></td>
+<td><p>Input validation failed</p></td>
+</tr>
+<tr class="row-odd"><td><p>AUTHENTICATION_FAILED</p></td>
+<td><p>Invalid credentials</p></td>
+</tr>
+<tr class="row-even"><td><p>PERMISSION_DENIED</p></td>
+<td><p>Insufficient permissions for operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>RESOURCE_NOT_FOUND</p></td>
+<td><p>Requested resource does not exist</p></td>
+</tr>
+<tr class="row-even"><td><p>DUPLICATE_RESOURCE</p></td>
+<td><p>Resource with same identifier already exists</p></td>
+</tr>
+<tr class="row-odd"><td><p>RATE_LIMIT_EXCEEDED</p></td>
+<td><p>Too many requests from client</p></td>
+</tr>
+<tr class="row-even"><td><p>MAINTENANCE_MODE</p></td>
+<td><p>System in maintenance mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>INVALID_TOKEN</p></td>
+<td><p>Authentication token is invalid or expired</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pagination">
+<h2>Pagination<a class="headerlink" href="#pagination" title="Link to this heading"></a></h2>
+<p>List endpoints support pagination with the following parameters:</p>
+<p><strong>Query Parameters</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">page</span></code> (integer): Page number (default: 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">page_size</span></code> (integer): Items per page (default: 20, max: 100)</p></li>
+</ul>
+<p><strong>Example Request</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /api/applications/?page=2&amp;page_size=50
+Authorization: Bearer your-token-here
+</pre></div>
+</div>
+<p><strong>Example Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="c1">// Array of resources</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;meta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;pagination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com/api/applications/?page=3&amp;page_size=50&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;previous&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com/api/applications/?page=1&amp;page_size=50&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;page_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;num_pages&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="filtering-and-searching">
+<h2>Filtering and Searching<a class="headerlink" href="#filtering-and-searching" title="Link to this heading"></a></h2>
+<p>Most list endpoints support filtering and searching:</p>
+<p><strong>Common Filter Parameters</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">search</span></code> (string): Full-text search across relevant fields</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">created_after</span></code> (datetime): Filter by creation date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">created_before</span></code> (datetime): Filter by creation date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modified_after</span></code> (datetime): Filter by modification date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modified_before</span></code> (datetime): Filter by modification date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">created_by</span></code> (integer): Filter by creator user ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_active</span></code> (boolean): Filter by active status</p></li>
+</ul>
+<p><strong>Example Request</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /api/applications/?search=web&amp;created_after=2024-01-01&amp;is_active=true
+Authorization: Bearer your-token-here
+</pre></div>
+</div>
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Link to this heading"></a></h2>
+<p>List endpoints support sorting with the <code class="docutils literal notranslate"><span class="pre">ordering</span></code> parameter:</p>
+<p><strong>Example Requests</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Sort by name ascending
+GET /api/applications/?ordering=name
+
+# Sort by creation date descending
+GET /api/applications/?ordering=-created_date
+
+# Multiple sort fields
+GET /api/applications/?ordering=name,-created_date
+</pre></div>
+</div>
+</section>
+<section id="field-selection">
+<h2>Field Selection<a class="headerlink" href="#field-selection" title="Link to this heading"></a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">fields</span></code> parameter to request specific fields only:</p>
+<p><strong>Example Request</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /api/applications/?fields=id,name,description,is_active
+Authorization: Bearer your-token-here
+</pre></div>
+</div>
+<p><strong>Example Response</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;results&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Customer Portal&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Web application for customer management&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="bulk-operations">
+<h2>Bulk Operations<a class="headerlink" href="#bulk-operations" title="Link to this heading"></a></h2>
+<p>Some endpoints support bulk operations for efficiency:</p>
+<p><strong>Bulk Create</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>POST /api/applications/bulk/
+Content-Type: application/json
+Authorization: Bearer your-token-here
+
+{
+    &quot;operations&quot;: [
+        {
+            &quot;name&quot;: &quot;App 1&quot;,
+            &quot;description&quot;: &quot;First application&quot;
+        },
+        {
+            &quot;name&quot;: &quot;App 2&quot;,
+            &quot;description&quot;: &quot;Second application&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+<p><strong>Bulk Update</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PATCH /api/applications/bulk/
+Content-Type: application/json
+Authorization: Bearer your-token-here
+
+{
+    &quot;operations&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;is_active&quot;: false
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;description&quot;: &quot;Updated description&quot;
+        }
+    ]
+}
+</pre></div>
+</div>
+<p><strong>Bulk Delete</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>DELETE /api/applications/bulk/
+Content-Type: application/json
+Authorization: Bearer your-token-here
+
+{
+    &quot;ids&quot;: [1, 2, 3, 4, 5]
+}
+</pre></div>
+</div>
+</section>
+<section id="rate-limiting">
+<h2>Rate Limiting<a class="headerlink" href="#rate-limiting" title="Link to this heading"></a></h2>
+<p>API endpoints are rate limited to prevent abuse:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 35.0%" />
+<col style="width: 35.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>User Role</strong></p></th>
+<th class="head"><p><strong>Requests per Minute</strong></p></th>
+<th class="head"><p><strong>Burst Limit</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Business User</p></td>
+<td><p>60</p></td>
+<td><p>120</p></td>
+</tr>
+<tr class="row-odd"><td><p>Business Manager</p></td>
+<td><p>120</p></td>
+<td><p>240</p></td>
+</tr>
+<tr class="row-even"><td><p>Technician</p></td>
+<td><p>180</p></td>
+<td><p>360</p></td>
+</tr>
+<tr class="row-odd"><td><p>Systems Manager</p></td>
+<td><p>300</p></td>
+<td><p>600</p></td>
+</tr>
+<tr class="row-even"><td><p>Application Admin</p></td>
+<td><p>600</p></td>
+<td><p>1200</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rate Limit Headers</strong></p>
+<p>Responses include rate limit information:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 45
+X-RateLimit-Reset: 1640995200
+</pre></div>
+</div>
+<p>When rate limit is exceeded:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 429 Too Many Requests
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 1640995200
+Retry-After: 60
+
+{
+    &quot;status&quot;: &quot;error&quot;,
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;RATE_LIMIT_EXCEEDED&quot;,
+        &quot;message&quot;: &quot;Rate limit exceeded. Try again in 60 seconds.&quot;
+    }
+}
+</pre></div>
+</div>
+</section>
+<section id="webhooks">
+<h2>Webhooks<a class="headerlink" href="#webhooks" title="Link to this heading"></a></h2>
+<p>The system supports webhooks for real-time notifications:</p>
+<p><strong>Webhook Events</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">application.created</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application.updated</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">application.deleted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server.created</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server.updated</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server.deleted</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user.created</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user.updated</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user.role_changed</span></code></p></li>
+</ul>
+<p><strong>Webhook Payload</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application.created&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-01-15T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New Application&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;created_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john.doe&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;webhook&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;webhook_123&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://your-server.com/webhook&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Webhook Configuration</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>POST /api/webhooks/
+Content-Type: application/json
+Authorization: Bearer your-token-here
+
+{
+    &quot;url&quot;: &quot;https://your-server.com/webhook&quot;,
+    &quot;events&quot;: [&quot;application.created&quot;, &quot;application.updated&quot;],
+    &quot;is_active&quot;: true,
+    &quot;secret&quot;: &quot;your-webhook-secret&quot;
+}
+</pre></div>
+</div>
+</section>
+<section id="api-versioning">
+<h2>API Versioning<a class="headerlink" href="#api-versioning" title="Link to this heading"></a></h2>
+<p>The API uses header-based versioning:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /api/applications/
+Accept: application/json; version=1.0
+Authorization: Bearer your-token-here
+</pre></div>
+</div>
+<p><strong>Supported Versions</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code> (current): Current stable version</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.9</span></code> (deprecated): Legacy version, will be removed in 6 months</p></li>
+</ul>
+<p><strong>Version Compatibility</strong></p>
+<p>When no version is specified, the latest stable version is used. Breaking changes will result in a new major version.</p>
+</section>
+<section id="sdk-and-client-libraries">
+<h2>SDK and Client Libraries<a class="headerlink" href="#sdk-and-client-libraries" title="Link to this heading"></a></h2>
+<p>Official SDKs are available for popular programming languages:</p>
+<p><strong>Python SDK</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>app-tracker-sdk
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">app_tracker</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;https://your-domain.com/api/&#39;</span><span class="p">,</span>
+    <span class="n">token</span><span class="o">=</span><span class="s1">&#39;your-auth-token&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># List applications</span>
+<span class="n">applications</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+
+<span class="c1"># Get specific application</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="c1"># Create new application</span>
+<span class="n">new_app</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">applications</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;My Application&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Application description&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p><strong>JavaScript SDK</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>@yourorg/app-tracker-sdk
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">APIClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@yourorg/app-tracker-sdk&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">APIClient</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">baseURL</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://your-domain.com/api/&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">token</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;your-auth-token&#39;</span>
+<span class="p">});</span>
+
+<span class="c1">// List applications</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">applications</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">applications</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
+
+<span class="c1">// Get specific application</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">applications</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mf">123</span><span class="p">);</span>
+
+<span class="c1">// Create new application</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newApp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">applications</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;My Application&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Application description&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-and-development">
+<h2>Testing and Development<a class="headerlink" href="#testing-and-development" title="Link to this heading"></a></h2>
+<p><strong>API Testing</strong></p>
+<p>Use the interactive API documentation at <code class="docutils literal notranslate"><span class="pre">/api/docs/</span></code> for testing endpoints.</p>
+<p><strong>Development Environment</strong></p>
+<p>For development, use the test server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dev</span><span class="o">.</span><span class="n">your</span><span class="o">-</span><span class="n">domain</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span>
+</pre></div>
+</div>
+<p><strong>Mock Data</strong></p>
+<p>Test endpoints with sample data:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /api/test/sample-data/
+Authorization: Bearer your-test-token
+</pre></div>
+</div>
+<p>This returns sample data for all resource types for testing purposes.</p>
+<p><strong>API Health Check</strong></p>
+<p>Monitor API health:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GET /api/health/
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-01-15T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;database&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;cache&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;storage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.0.1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="authentication.html" class="btn btn-neutral float-right" title="API Authentication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Government IT Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
