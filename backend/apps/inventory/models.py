@@ -322,6 +322,8 @@ class ApplicationLanguageDependency(models.Model):
     class Meta:
         unique_together = ['application', 'language_installation']
         ordering = ['application', '-is_primary', 'language_installation']
+        verbose_name = "Application Language Dependency"
+        verbose_name_plural = "Application Language Dependencies"
 
     def __str__(self):
         return f"{self.application.name} -> {self.language_installation}"
@@ -342,6 +344,8 @@ class ApplicationDataStoreDependency(models.Model):
     class Meta:
         unique_together = ['application', 'datastore_instance']
         ordering = ['application', '-is_primary', 'datastore_instance']
+        verbose_name = "Application Data Store Dependency"
+        verbose_name_plural = "Application Data Store Dependencies"
 
     def __str__(self):
         return f"{self.application.name} -> {self.datastore_instance}"
